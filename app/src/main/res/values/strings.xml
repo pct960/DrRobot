@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">Dr.Robot</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="symptom_list">
+        <item>Fever</item>
+        <item>Chills</item>
+        <item>Cough</item>
+        <item>Muscle ache</item>
+        <item>Sneezing</item>
+        <item>Headache</item>
+        <item>Fatigue</item>
+        <item>Congestion</item>
+        <item>Bloody diarrhoea</item>
+        <item>Abdominal pain</item>
+        <item>Inability to empty bowels</item>
+        <item>Cramps</item>
+        <item>Indigestion</item>
+        <item>Vomiting</item>
+        <item>Flatulence</item>
+        <item>Nausea</item>
+        <item>Yellowing of eyes</item>
+        <item>Loss of appetite</item>
+        <item>Dark urine</item>
+        <item>Itching</item>
+        <item>Swelling</item>
+        <item>Body pain</item>
+        <item>Rashes</item>
+        <item>Easy bruising</item>
+        <item>Sore throat</item>
+        <item>Sweating</item>
+        <item>Shivering</item>
+        <item>Fast heart rate</item>
+        <item>Diarrhoea</item>
+        <item>Abdominal tenderness</item>
+        <item>Decreased body weight</item>
+        <item>Retching</item>
+        <item>Dehydration</item>
+        <item>Dry mouth</item>
+        <item>Hunger</item>
+        <item>Stomach pain</item>
+        <item>Dizziness</item>
+        <item>Tiredness</item>
+        <item>Weakness</item>
+        <item>Redness of eyes</item>
+        <item>Itching of eyes</item>
+        <item>Discharge from eyes</item>
+        <item>Tearing up of eyes</item>
+        <item>Runny nose</item>
+        <item>Paralysis</item>
+        <item>Confusion</item>
+        <item>Coughing blood</item>
+        <item>Night sweats</item>
+        <item>Coughing phlegm</item>
+    </string-array>
+
+    <string-array name="questions">
+        <item>Have you had a fever?</item>
+        <item>Have you suddenly felt cold?</item>
+        <item>Have you been coughing?</item>
+        <item>Are your muscles paining?</item>
+        <item>Are you sneezing frequently?</item>
+        <item>Has your head been aching?</item>
+        <item>Have you been feeling tired?</item>
+        <item>Have you had a blocked nose?</item>
+        <item>Has there been blood in your diarrhoea?</item>
+        <item>Have you had pain in or near your stomach?</item>
+        <item>Are you unable to pass stool?</item>
+        <item>Do you have an uneasy feeling in your stomach, usually after eating?</item>
+        <item>Have you vomited?</item>
+        <item>Do you feel that you have a buildup of gas in your stomach?</item>
+        <item>Have you been having an uneasy sensation to vomit?</item>
+        <item>Do your eyes seem to be yellow?</item>
+        <item>Have you been eating properly?</item>
+        <item>Is your urine darker than usual?</item>
+        <item>Are you experiencing itching?</item>
+        <item>Is any part of your body swollen?</item>
+        <item>Are you experiencing body pains?</item>
+        <item>Have you noticed rashes on your body?</item>
+        <item>Have you noticed that you get bruises easily?</item>
+        <item>Do you have a sore throat?</item>
+        <item>Have you been sweating more than usual?</item>
+        <item>Have you had bouts of shivering?</item>
+        <item>Is your heart beating fast, even at rest?</item>
+        <item>Have you had diarrhoea?</item>
+        <item>Do you feel pain when you touch/press around your stomach?</item>
+        <item>Have you noticed yourself losing weight in the duration of your sickness?</item>
+        <item>Have you had a sensation to vomit, but were unable to?</item>
+        <item>Have you been feeling weak, and feeling thirsty?</item>
+        <item>Have you noticed your mouth getting dry?</item>
+        <item>Have you had excess hunger?</item>
+        <item>Have you had stomach pain?</item>
+        <item>Have you been feeling dizzy?</item>
+        <item>Have you been feeling more tired than usual?</item>
+        <item>Have you been feeling weak?</item>
+        <item>Are you eyes redder than usual?</item>
+        <item>Are your eyes itching?</item>
+        <item>Is there some discharge on your eyelids in the morning?</item>
+        <item>Have your eyes been watering?</item>
+        <item>Has your nose been running?</item>
+        <item>Have you experienced a loss of sensation in any part of your body?</item>
+        <item>Have you been confused, or had hallucinations?</item>
+        <item>Have you coughed up blood?</item>
+        <item>Have you been sweating profusely, especially in the night?</item>
+        <item>Have you coughed up phlegm?</item>
+
+    </string-array>
+</resources>
