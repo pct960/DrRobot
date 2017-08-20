@@ -21,25 +21,20 @@ public class questions extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_questions, container, false);
-
         recyclerView = (RecyclerView) v.findViewById(R.id.questions_recyclerview);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(50);
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
-
         listItems = new ArrayList<>();
-
         String questions[]=getResources().getStringArray(R.array.questions);
-
+        //System.out.println(questions);
         for(String temp : questions)
         {
             ListItem listItem = new ListItem(temp, "Yes");
             listItems.add(listItem);
         }
-
         adapter = new MyAdapter(listItems, v.getContext());
-
         recyclerView.setAdapter(adapter);
-
         return v;
 
     }
