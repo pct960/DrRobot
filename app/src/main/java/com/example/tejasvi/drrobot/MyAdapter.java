@@ -49,13 +49,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         holder.question.setText(listItem.getQuestion());
 
-        holder.response.setOnClickListener(new View.OnClickListener() {
+        holder.response.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 int id=holder.response.getCheckedRadioButtonId();
 
-                RadioButton answer=(RadioButton)v.findViewById(id);
+                RadioButton answer=(RadioButton)group.findViewById(id);
 
                 if(answer.getText().equals("Yes"))
                 {
@@ -65,9 +65,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 {
                     Toast.makeText(context, "You clicked no", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
-
 
     }
 
