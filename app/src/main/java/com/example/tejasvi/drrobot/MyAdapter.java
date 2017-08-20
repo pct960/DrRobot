@@ -60,10 +60,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 if(answer.getText().equals("Yes"))
                 {
                     Toast.makeText(context, "You clicked yes", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,(holder.question.getText()),Toast.LENGTH_SHORT).show();
                 }
                 else if (answer.getText().equals("No"))
                 {
                     Toast.makeText(context, "You clicked no", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,(holder.question.getText()),Toast.LENGTH_SHORT).show();
                 }
 
             }
