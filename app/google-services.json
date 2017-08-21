@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1184986704",
+    "firebase_url": "https://drrobot-a5693.firebaseio.com",
+    "project_id": "drrobot-a5693",
+    "storage_bucket": "drrobot-a5693.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1184986704:android:e17a3be70bbb79b4",
+        "android_client_info": {
+          "package_name": "com.example.tejasvi.drrobot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1184986704-466cp63oa223op1n9rvgf1r14bn7io66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tejasvi.drrobot",
+            "certificate_hash": "daa2ad9b346c10d92696c6b2d93ec919991b1ca5"
+          }
+        },
+        {
+          "client_id": "1184986704-h2un173i7mie9mq8lgcon1ambkvcu3bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv3RexrVnKLxh5Njh1dXLlse52wyr8tSo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1184986704-h2un173i7mie9mq8lgcon1ambkvcu3bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,6 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 /**
@@ -47,6 +50,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         final ListItem listItem = listItems.get(position);
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference();
+
         holder.question.setText(listItem.getQuestion());
 
         holder.response.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -60,12 +66,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 if(answer.getText().equals("Yes"))
                 {
                     Toast.makeText(context, "You clicked yes", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context,(holder.question.getText()),Toast.LENGTH_SHORT).show();
+                    myRef.child("Responses").child("pct").child(holder.question.getText().toString()).setValue(answer.getText());
                 }
                 else if (answer.getText().equals("No"))
                 {
                     Toast.makeText(context, "You clicked no", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context,(holder.question.getText()),Toast.LENGTH_SHORT).show();
+                    myRef.child("Responses").child("pct").child(holder.question.getText().toString()).setValue(answer.getText());
                 }
 
             }
