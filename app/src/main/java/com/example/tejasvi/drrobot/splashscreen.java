@@ -105,7 +105,7 @@ public class splashscreen extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(4000);
-                    Intent Intent_main_menu = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent Intent_main_menu = new Intent(getApplicationContext(),welcome.class);
                     startActivity(Intent_main_menu);
 
                 } catch (InterruptedException e) {
