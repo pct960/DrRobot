@@ -8,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -62,14 +67,26 @@ public class diagnose extends Fragment {
         else
         {
             count++;
-
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
             RelativeLayout rl=(RelativeLayout)v.findViewById(R.id.activity_diagnose);
             Button btn=(Button)v.findViewById(R.id.add_symptom);
-            AutoCompleteTextView tv=new AutoCompleteTextView(v.getContext());
+            final AutoCompleteTextView tv=new AutoCompleteTextView(v.getContext());
             ArrayAdapter list =new ArrayAdapter(v.getContext(),android.R.layout.select_dialog_item,symptom_list);
             tv.setThreshold(1);
             tv.setAdapter(list);
-            chosensymptoms.add(tv.getText().toString());
+            tv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Symptoms").child(tv.getText().toString()).setValue(1);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
             tv.setId(count);
             tv.setHint("Enter your symptom here...");
             if(tv.requestFocus()) {
