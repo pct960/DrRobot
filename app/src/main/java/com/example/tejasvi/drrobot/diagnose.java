@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+// TODO: getting symptoms dynamically, by iterating thru controls
 public class diagnose extends Fragment {
 
-    AutoCompleteTextView symptoms;
-
+    AutoCompleteTextView initsymptom;
+    ArrayList<String> chosensymptoms=new ArrayList<>();
     String symptom_list[];
 
     int count;
@@ -29,26 +33,23 @@ public class diagnose extends Fragment {
         v = inflater.inflate(R.layout.activity_diagnose, container, false);
         count=1;
         margin=25;
-
-        symptoms=(AutoCompleteTextView)v.findViewById(R.id.symptoms1);
-
+        initsymptom=(AutoCompleteTextView)v.findViewById(R.id.symptoms1);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            chosensymptoms = bundle.getStringArrayList("symptoms");
+        }
+        chosensymptoms.add(initsymptom.getText().toString());
         symptom_list=getResources().getStringArray(R.array.symptom_list);
-
         ArrayAdapter list =new ArrayAdapter(v.getContext(),android.R.layout.select_dialog_item,symptom_list);
-
-        symptoms.setThreshold(1);
-
-        symptoms.setAdapter(list);
-
+        initsymptom.setThreshold(1);
+        initsymptom.setAdapter(list);
         Button btn=(Button)v.findViewById(R.id.add_symptom);
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add_symptom_box();
             }
         });
-
         return v;
     }
 
@@ -64,14 +65,11 @@ public class diagnose extends Fragment {
 
             RelativeLayout rl=(RelativeLayout)v.findViewById(R.id.activity_diagnose);
             Button btn=(Button)v.findViewById(R.id.add_symptom);
-
             AutoCompleteTextView tv=new AutoCompleteTextView(v.getContext());
-
             ArrayAdapter list =new ArrayAdapter(v.getContext(),android.R.layout.select_dialog_item,symptom_list);
-
             tv.setThreshold(1);
-
             tv.setAdapter(list);
+            chosensymptoms.add(tv.getText().toString());
             tv.setId(count);
             tv.setHint("Enter your symptom here...");
             if(tv.requestFocus()) {
@@ -81,7 +79,6 @@ public class diagnose extends Fragment {
             RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             RelativeLayout.LayoutParams absParams =
                     (RelativeLayout.LayoutParams)btn.getLayoutParams();
-
             p.addRule(RelativeLayout.BELOW,R.id.symptoms1);
             p.topMargin=margin;
             margin+=150;

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class questions extends Fragment {
-
+    // TODO: set 5 questions per view. make fb session to do this
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;

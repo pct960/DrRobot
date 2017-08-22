@@ -14,10 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FragmentManager fragmentManager = getSupportFragmentManager();
+    ArrayList<String> chosensymptoms=new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +34,10 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setTitle("Perform a quick diagnosis");
+                for(String s:chosensymptoms)
+                    Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
                 fragmentManager.beginTransaction().replace(R.id.fm1,  new questions()).commit();
             }
         });
@@ -85,7 +93,11 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_diagnose)
         {
             setTitle("Perform a quick diagnosis");
-            fragmentManager.beginTransaction().replace(R.id.fm1,  new diagnose()).commit();
+            diagnose d=new diagnose();
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("symptoms", chosensymptoms);
+            d.setArguments(bundle);
+            fragmentManager.beginTransaction().replace(R.id.fm1,  d).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
