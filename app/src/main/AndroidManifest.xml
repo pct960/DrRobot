@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB9GnyAs7y2Mbv57F25Sj03BmhucqUJ6Dg"/>
+            android:value="AIzaSyB9GnyAs7y2Mbv57F25Sj03BmhucqUJ6Dg" />
+
         <activity
             android:name=".splashscreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -34,9 +35,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".diagnose" />
         <activity android:name=".questions" />
-        <activity android:name=".welcome" />
+        <activity
+            android:name=".welcome" />
         <activity android:name=".login" />
-        <activity android:name=".signup"></activity>
+        <activity android:name=".signup" />
+        <activity android:name=".settings" />
+        <activity android:name=".editprofile" />
+        <activity android:name=".update_email" />
+        <activity android:name=".update_password"></activity>
     </application>
 
 </manifest>
