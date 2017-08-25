@@ -24,6 +24,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_symptom"
         android:layout_below="@id/symptoms1"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@id/symptoms1"
+        android:layout_marginLeft="100px"/>
+
+    <Button
+        android:text="Diagnose!"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/diagnose"
+        android:layout_below="@id/symptoms1"
+        android:layout_centerHorizontal="true"
+        android:layout_alignEnd="@id/symptoms1"
+        android:layout_marginEnd="120px"
+        android:enabled="false"/>
 
 </RelativeLayout>
