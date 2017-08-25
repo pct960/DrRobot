@@ -109,6 +109,11 @@ public class MainActivity extends AppCompatActivity
             setTitle("Help");
             fragmentManager.beginTransaction().replace(R.id.fm1,new help()).commit();
         }
+        else if(id==R.id.nav_feedback)
+        {
+            setTitle("Contact Us");
+            fragmentManager.beginTransaction().replace(R.id.fm1,new contact()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
