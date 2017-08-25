@@ -9,6 +9,184 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="learning_stuff">
+  <![CDATA[
+    <p><strong>Influenza</strong></p>
+<ul>
+<li>Fever</li>
+<li>Chills</li>
+<li>Muscle aches</li>
+<li>Cough</li>
+<li>Congestion</li>
+<li>Runny nose</li>
+<li>Sneezes</li>
+<li>Headaches</li>
+<li>Fatigue</li>
+</ul>
+<p><strong>Dysentery</strong></p>
+<ul>
+<li>Bloody diarrhoea</li>
+<li>Abdominal pain</li>
+<li>Cramps</li>
+<li>Fever</li>
+<li>A general feeling of discomfort</li>
+<li>Inability to empty bowels</li>
+<li>Indigestion</li>
+<li>Nausea</li>
+<li>Vomiting</li>
+<li>Flatulence</li>
+</ul>
+<p><strong>Hepatitis</strong></p>
+<ul>
+<li>Yellowing of the eyes</li>
+<li>Fatigue</li>
+<li>Loss of appetite</li>
+<li>General feeling of discomfort</li>
+<li>Abdominal pain</li>
+<li>Dark urine</li>
+<li>Itching</li>
+<li>Swelling</li>
+</ul>
+<p><strong>Dengue</strong></p>
+<ul>
+<li>Abdominal Pain</li>
+<li>Muscle Ache</li>
+<li>Chills</li>
+<li>Fatigue</li>
+<li>Fever</li>
+<li>Loss of appetite</li>
+<li>Nausea</li>
+<li>Vomiting</li>
+<li>Rashes</li>
+<li>Easy bruising</li>
+<li>Headache</li>
+<li>Sore throat</li>
+</ul>
+<p><strong>Malaria</strong></p>
+<ul>
+<li>Muscle Ache</li>
+<li>Chills</li>
+<li>Fatigue</li>
+<li>Fever</li>
+<li>Malaise</li>
+<li>Shivering</li>
+<li>Sweating</li>
+<li>Fast heart rate</li>
+<li>Headache</li>
+<li>Nausea</li>
+<li>Unhealthy pale appearance</li>
+</ul>
+<p><strong>Typhoid</strong></p>
+<ul>
+<li>High fever</li>
+<li>Chills</li>
+<li>Severe diarrhoea</li>
+<li>Headache</li>
+</ul>
+<p><strong>Appendicitis</strong></p>
+<ul>
+<li>Abdominal pain</li>
+<li>Chills</li>
+<li>Fever</li>
+<li>Loss of appetite</li>
+<li>General feeling of discomfort</li>
+<li>Nausea</li>
+<li>Vomiting</li>
+<li>Abdominal tenderness</li>
+</ul>
+<p><strong>Gastroenteritis</strong></p>
+<ul>
+<li>Stomach pain</li>
+<li>Uneasiness of the stomach - vomiting</li>
+<li>Decreased body weight</li>
+<li>Sore to touch ???</li>
+<li>Yellow eyes, like jaundice</li>
+<li>Fever</li>
+<li>Muscle pain</li>
+<li>Retch - To have the action of vomiting, but not actually expelling vomit</li>
+</ul>
+<p><strong>Diarrhoea</strong></p>
+<ul>
+<li>Abdominal cramps</li>
+<li>Abdominal pains</li>
+<li>Urgency to go to the toilet</li>
+<li>Frequent passing of loose, watery faeces</li>
+<li>Nausea</li>
+<li>Vomiting.</li>
+</ul>
+<p><strong>Cholera </strong></p>
+<ul>
+<li>Dehydration</li>
+<li>Dry mouth</li>
+<li>feeling weak</li>
+<li>Diarrhoea</li>
+<li>Vomiting</li>
+<li>Fever</li>
+<li>Hunger</li>
+<li>Stomach pain</li>
+</ul>
+<p><strong>Common</strong> <strong>Cold</strong></p>
+<ul>
+<li>Cough</li>
+<li>Muscle pain</li>
+<li>Runny nose,</li>
+<li>Congestion</li>
+<li>sneezing</li>
+<li>Fever</li>
+<li>Chills</li>
+<li>Sore throat</li>
+<li>Phlegm while coughing</li>
+<li>Fatigue</li>
+<li>Tiredness/sleepiness</li>
+<li>Headache</li>
+<li>Dizziness</li>
+<li>Muscle pain</li>
+<li>Loss of appetite</li>
+</ul>
+<p><strong>Food poisoning </strong></p>
+<ul>
+<li>Uneasiness</li>
+<li>Vomiting</li>
+<li>Diarrhoea</li>
+<li>Loss of appetite</li>
+<li>Indigestion</li>
+<li>Weakness</li>
+<li>Dizziness</li>
+<li>Tiredness</li>
+<li>Stomach pain</li>
+<li>Fevers</li>
+<li>Dehydration</li>
+</ul>
+<p><strong>Gastritis</strong></p>
+<ul>
+<li>Stomach pain</li>
+<li>Vomiting</li>
+<li>Uneasiness</li>
+<li>Dizziness</li>
+<li>Loss of appetite</li>
+<li>Indigestion</li>
+</ul>
+<p><strong>Conjunctivitis</strong></p>
+<ul>
+<li>Redness in one or both eyes</li>
+<li>Itchiness in one or both eyes</li>
+<li>A gritty feeling in one or both eyes</li>
+<li>A discharge in one or both eyes that forms a crust during the night that may prevent your eye or eyes from opening in the morning</li>
+<li>Tearing</li>
+</ul>
+<p><strong>Encephalitis</strong></p>
+<ul>
+<li>Headache</li>
+<li>Fever</li>
+<li>Aches in muscles or joints</li>
+<li>Fatigue or weakness</li>
+<li>Confusion, agitation or hallucinations</li>
+<li>Seizures</li>
+<li>Loss of sensation or paralysis in certain areas of the face or body</li>
+<li>Muscle weakness</li>
+<li>Problems with speech or hearing</li>
+<li>Loss of consciousness</li>
+</ul>]]></string>
 
     <string-array name="symptom_list">
         <item>Fever</item>
