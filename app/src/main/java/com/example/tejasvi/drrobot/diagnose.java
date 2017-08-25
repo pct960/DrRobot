@@ -118,6 +118,11 @@ public class diagnose extends Fragment {
 
 
                     }
+
+                    getFragmentManager().beginTransaction()
+                            .replace(((ViewGroup) getView().getParent()).getId(), new questions())
+                            .addToBackStack(null)
+                            .commit();
                 }
             });
 

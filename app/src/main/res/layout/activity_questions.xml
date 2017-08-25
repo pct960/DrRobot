@@ -17,4 +17,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/questions_recyclerview"
+        android:layout_centerInParent="true"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:id="@+id/btn_questions_next"/>
+
 </RelativeLayout>
