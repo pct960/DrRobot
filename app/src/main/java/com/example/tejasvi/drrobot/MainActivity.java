@@ -18,6 +18,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+// TODO: MUST HAVE A WAY TO RECEIVE THE DIGNOSED DISEASE AND PRESENT IT TO THE USER 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

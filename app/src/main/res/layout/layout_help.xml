@@ -8,25 +8,82 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
+                android:id="@+id/intro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/help_intro"
-                android:id="@+id/intro"/>
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/help_disc_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/intro"
+                android:layout_marginTop="20dp"
+                android:text="@string/help_disc_head"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/disc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/help_disc_head"
+                android:layout_marginTop="10dp"
                 android:text="@string/help_disclaimer"
-                android:textStyle="bold"
-                android:layout_below="@+id/intro"/>
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:id="@+id/steps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/disc"
                 android:text="@string/help_steps"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/step1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/steps"
+                android:text="@string/help_step_1"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/step2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/step1"
+                android:text="@string/help_step_2"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/step3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/step2"
+                android:text="@string/help_step_3"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/step4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/step3"
+                android:text="@string/help_step_4"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="18sp" />
         </RelativeLayout>

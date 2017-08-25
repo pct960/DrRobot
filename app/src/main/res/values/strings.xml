@@ -303,10 +303,13 @@
         check if you have a disease in case you have felt under the weather. It works by asking you a series of questions, and narrowing
         down on a disease you might have, depending on your responses.
     </string>
+    <string name="help_disc_head">
+        DISCLAIMER
+    </string>
     <string name="help_disclaimer">
-        DISCLAIMER : DR. ROBOT IS AN APP. IN NO WAY CAN IT REPLACE PROFESSIONAL MEDICAL ADVICE FROM A DOCTOR OR NURSE. PLEASE CONSULT
+         DR. ROBOT IS AN APP. IN NO WAY CAN IT REPLACE PROFESSIONAL MEDICAL ADVICE FROM A DOCTOR OR NURSE. PLEASE CONSULT
         A DOCTOR IN CASE YOUR SYMPTOMS HAVE BECOME WORSE, OR YOU HAVE BEEN DIAGNOSED WITH A SERIOUS DISEASE. PLEASE DO NOT CONSUME 
-        MEDICINES BASED ON THE DIAGNOSIS WITHOUT A DOCTOR'S PRESCRIPTION. AS MENTIONED, DR. ROBOT HELPS IN PRELIMINARY DIAGNOSIS; IT CAN 
+        MEDICINES BASED ON THE DIAGNOSIS WITHOUT A DOCTOR\'S PRESCRIPTION. AS MENTIONED, DR. ROBOT HELPS IN PRELIMINARY DIAGNOSIS; IT CAN
         DIAGNOSE YOU BASED ON SYMPTOMS YOU HAVE EXPERIENCED. IT DOES NOT TAKE INTO ACCOUNT ANY UNDERLYING CONDITIONS, OR RANGES OF TIME 
         FOR WHICH THE SYMPTOMS HAVE BEEN PREVALENT.
     </string>
@@ -320,7 +323,7 @@
     <string name="help_step_2">
         2) Click on \'Perform a quick diagnosis\' in the drawer menu. You will be prompted to add symptoms. Please add atleast
         3 and atmost 5 symptoms, and restrict them to those prompted by the autocomplete options. You can check out all the symptoms
-        in the \'Learn more\' section in the menu. Click the button at the lower right corner to submit your symptoms.
+        in the \'Learn more\' section in the menu. Click the \'Diagnose\' button to submit your symptoms.
     </string>
     <string name="help_step_3">
         3) From there, pairs of questions will be asked, and you are simply required to answer Yes/No. If you are unsure whether you
@@ -328,7 +331,7 @@
         on the responses you give; please do not be alarmed if too many questions are being thrown at you!
     </string>
     <string name="help_step_4">
-        4) The app will inform you of it\'s decision, as soon as it has narrowed it down from the list of diseases. You can check previous
+        4) The app will inform you of its decision, as soon as it has narrowed it down from the list of diseases. You can check previous
         diagnoses from the \'History\' option in the menu.
     </string>
 </resources>
