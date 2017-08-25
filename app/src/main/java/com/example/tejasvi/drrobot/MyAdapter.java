@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference();
+        final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
         holder.question.setText(listItem.getQuestion());
 
@@ -66,12 +68,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 if(answer.getText().equals("Yes"))
                 {
                     Toast.makeText(context, "You clicked yes", Toast.LENGTH_SHORT).show();
-                    myRef.child("Responses").child("pct").child(holder.question.getText().toString()).setValue(answer.getText());
+                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
                 }
                 else if (answer.getText().equals("No"))
                 {
                     Toast.makeText(context, "You clicked no", Toast.LENGTH_SHORT).show();
-                    myRef.child("Responses").child("pct").child(holder.question.getText().toString()).setValue(answer.getText());
+                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
                 }
 
             }

@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class signup extends AppCompatActivity {
 
+    // TODO: 8/23/2017 When there is an error signing up, the control is redirected to main activity
+
     private String android_id;
     private FirebaseAuth mAuth;
 
@@ -39,6 +41,7 @@ public class signup extends AppCompatActivity {
 
     private ProgressDialog loading;
     ProgressDialog progressDialog;
+    boolean login_success=false;
 
     int x = 0;
 
@@ -101,13 +104,17 @@ public class signup extends AppCompatActivity {
 
 
                 if (sUsername.matches("")) {
+                    progressDialog.dismiss();
                     Toast.makeText(signup.this, "Enter a user name", Toast.LENGTH_SHORT).show();
                 } else if (smobile.matches("") /*|| smobile.length() != 10*/) {
+                    progressDialog.dismiss();
                     Toast.makeText(signup.this, "Invalid mobile number", Toast.LENGTH_SHORT).show();
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(email2.getText().toString()).matches()) {
+                    progressDialog.dismiss();
                     Toast.makeText(signup.this, "Please enter a Valid E-Mail Address!",
                             Toast.LENGTH_LONG).show();
                 } else if (!pass1.equals(pass2)) {
+                    progressDialog.dismiss();
                     Toast.makeText(signup.this, "Passwords don't match",
                             Toast.LENGTH_LONG).show();
                 } else {
@@ -133,11 +140,14 @@ public class signup extends AppCompatActivity {
         final Spinner gender = (Spinner) findViewById(R.id.gender);
 
 
+
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwd.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (!task.isSuccessful()) {
+                    progressDialog.dismiss();
                     Toast.makeText(signup.this, "Error signing up", Toast.LENGTH_SHORT).show();
+
                 }
                 else
                 {
@@ -151,13 +161,20 @@ public class signup extends AppCompatActivity {
 
                     myRef.child("Users").child(mAuth.getCurrentUser().getUid()).child("Address").setValue(location);
 
+                    login_success=true;
+
                 }
             }
 
         });
 
-        progressDialog.dismiss();
-        Intent Intent_main_menu = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(Intent_main_menu);
+        if(login_success==true)
+        {
+            progressDialog.dismiss();
+            Intent Intent_main_menu = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(Intent_main_menu);
+        }
+
+
     }
 }

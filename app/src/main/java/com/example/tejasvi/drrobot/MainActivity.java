@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setTitle("Settings");
             fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).commit();
         }
 
@@ -101,6 +102,12 @@ public class MainActivity extends AppCompatActivity
             bundle.putStringArrayList("symptoms", chosensymptoms);
             d.setArguments(bundle);
             fragmentManager.beginTransaction().replace(R.id.fm1,  d).commit();
+        }
+
+        else if(id==R.id.nav_settings)
+        {
+            setTitle("Settings");
+            fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
