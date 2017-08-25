@@ -109,6 +109,11 @@ public class MainActivity extends AppCompatActivity
             setTitle("Settings");
             fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).commit();
         }
+        else if(id==R.id.nav_learn)
+        {
+            setTitle("Learn more");
+            fragmentManager.beginTransaction().replace(R.id.fm1,new learn()).commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
