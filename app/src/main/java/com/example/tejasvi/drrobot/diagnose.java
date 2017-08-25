@@ -26,7 +26,7 @@ import java.util.StringTokenizer;
 public class diagnose extends Fragment {
 
     AutoCompleteTextView initsymptom;
-    ArrayList<String> chosensymptoms=new ArrayList<>();
+    ArrayList<AutoCompleteTextView> chosensymptoms=new ArrayList<>();
     String symptom_list[];
 
     int count;
@@ -39,17 +39,13 @@ public class diagnose extends Fragment {
         count=1;
         margin=25;
         initsymptom=(AutoCompleteTextView)v.findViewById(R.id.symptoms1);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            chosensymptoms = bundle.getStringArrayList("symptoms");
-        }
-        chosensymptoms.add(initsymptom.getText().toString());
+        chosensymptoms.add(initsymptom);
         symptom_list=getResources().getStringArray(R.array.symptom_list);
         ArrayAdapter list =new ArrayAdapter(v.getContext(),android.R.layout.select_dialog_item,symptom_list);
         initsymptom.setThreshold(1);
         initsymptom.setAdapter(list);
-        Button btn=(Button)v.findViewById(R.id.add_symptom);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btn_symptom=(Button)v.findViewById(R.id.add_symptom);
+        btn_symptom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add_symptom_box();
@@ -60,33 +56,27 @@ public class diagnose extends Fragment {
 
     void add_symptom_box()
     {
-        if(count==5)
+        count++;
+
+        if(count>=5)
         {
             Toast.makeText(v.getContext(), "You can only add a maximum of five symptoms at a time ", Toast.LENGTH_SHORT).show();
         }
+
         else
         {
-            count++;
+            Button btn_symptom=(Button)v.findViewById(R.id.add_symptom);
+            Button btn_diagnose=(Button)v.findViewById(R.id.diagnose);
+            if(count>=3)btn_diagnose.setEnabled(true);
             final FirebaseDatabase database=FirebaseDatabase.getInstance();
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
             RelativeLayout rl=(RelativeLayout)v.findViewById(R.id.activity_diagnose);
-            Button btn=(Button)v.findViewById(R.id.add_symptom);
-            final AutoCompleteTextView tv=new AutoCompleteTextView(v.getContext());
+            AutoCompleteTextView tv=new AutoCompleteTextView(v.getContext());
+            final String symptom=tv.getText().toString();
             ArrayAdapter list =new ArrayAdapter(v.getContext(),android.R.layout.select_dialog_item,symptom_list);
             tv.setThreshold(1);
             tv.setAdapter(list);
-            tv.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Symptoms").child(tv.getText().toString()).setValue(1);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
             tv.setId(count);
             tv.setHint("Enter your symptom here...");
             if(tv.requestFocus()) {
@@ -95,15 +85,41 @@ public class diagnose extends Fragment {
 
             RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             RelativeLayout.LayoutParams absParams =
-                    (RelativeLayout.LayoutParams)btn.getLayoutParams();
+                    (RelativeLayout.LayoutParams)btn_symptom.getLayoutParams();
             p.addRule(RelativeLayout.BELOW,R.id.symptoms1);
             p.topMargin=margin;
             margin+=150;
             absParams.addRule(RelativeLayout.BELOW,R.id.symptoms1);
             absParams.topMargin=margin;
+
+            RelativeLayout.LayoutParams p1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams absParams1 =
+                    (RelativeLayout.LayoutParams)btn_diagnose.getLayoutParams();
+            p1.addRule(RelativeLayout.BELOW,R.id.symptoms1);
+            p1.topMargin=margin;
+            absParams1.addRule(RelativeLayout.BELOW,R.id.symptoms1);
+            absParams1.topMargin=margin;
+
             tv.setLayoutParams(p);
             rl.addView(tv);
-            btn.setLayoutParams(absParams);
+            chosensymptoms.add(tv);
+            btn_symptom.setLayoutParams(absParams);
+            btn_diagnose.setLayoutParams(absParams1);
+
+
+            btn_diagnose.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    for(int i=0;i<chosensymptoms.size();i++)
+                    {
+                        String selection=chosensymptoms.get(i).getText().toString();
+                        myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Symptoms").child(selection).setValue(1);
+
+
+                    }
+                }
+            });
 
         }
 
