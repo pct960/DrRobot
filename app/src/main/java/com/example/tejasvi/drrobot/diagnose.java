@@ -1,5 +1,6 @@
 package com.example.tejasvi.drrobot;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class diagnose extends Fragment {
     ArrayList<AutoCompleteTextView> chosensymptoms=new ArrayList<>();
     String symptom_list[];
 
+
     int count;
     int margin;
 
@@ -52,6 +54,7 @@ public class diagnose extends Fragment {
             }
         });
         return v;
+
     }
 
     void add_symptom_box()
