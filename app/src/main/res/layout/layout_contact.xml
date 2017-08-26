@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
-    android:id="@+id/contact" />
+
+    <TextView
+        android:id="@+id/contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/contactinfo"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/contactdetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact"
+        android:layout_marginTop="20dp"
+        android:text="@string/contactdetails"
+        android:textSize="18sp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/form"
+        android:layout_below="@+id/contactdetails"
+        android:maxLength="140"
+        android:hint="@string/hint"/>
+
+    <Button
+        android:id="@+id/send"
+        style="@style/FirebaseUI.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/form"
+        android:layout_centerInParent="true"
+        android:text="@string/buttonstuff"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black_overlay"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"/>
 </RelativeLayout>
