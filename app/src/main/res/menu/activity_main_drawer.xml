@@ -29,7 +29,7 @@
             <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Feedback/Contact Us" />
+                android:title="Contact Us" />
         </menu>
     </item>
 
