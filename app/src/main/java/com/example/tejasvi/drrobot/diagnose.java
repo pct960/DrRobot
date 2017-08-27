@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-// TODO: getting symptoms dynamically, by iterating thru controls
+// TODO: 8/27/2017 there is weird bug, the page refreshes suddenly 
 public class diagnose extends Fragment {
 
     AutoCompleteTextView initsymptom;
