@@ -12,181 +12,172 @@
     <string name="learning_stuff">
   <![CDATA[
     <p><strong>Influenza</strong></p>
-<ul>
-<li>Fever</li>
-<li>Chills</li>
-<li>Muscle aches</li>
-<li>Cough</li>
-<li>Congestion</li>
-<li>Runny nose</li>
-<li>Sneezes</li>
-<li>Headaches</li>
-<li>Fatigue</li>
-</ul>
+<br>
+\u2022Fever<br />
+\u2022Chills<br />
+\u2022Muscle aches<br />
+\u2022Cough<br />
+\u2022Congestion<br />
+\u2022Runny nose<br />
+\u2022Sneezes<br />
+\u2022Headaches<br />
+\u2022Fatigue<br />
+<br>
 <p><strong>Dysentery</strong></p>
-<ul>
-<li>Bloody diarrhoea</li>
-<li>Abdominal pain</li>
-<li>Cramps</li>
-<li>Fever</li>
-<li>A general feeling of discomfort</li>
-<li>Inability to empty bowels</li>
-<li>Indigestion</li>
-<li>Nausea</li>
-<li>Vomiting</li>
-<li>Flatulence</li>
-</ul>
+<br>
+\u2022Bloody diarrhoea<br />
+\u2022Abdominal pain<br />
+\u2022Cramps<br />
+\u2022Fever<br />
+\u2022A general feeling of discomfort<br />
+\u2022Inability to empty bowels<br />
+\u2022Indigestion<br />
+\u2022Nausea<br />
+\u2022Vomiting<br />
+\u2022Flatulence<br />
+<br>
 <p><strong>Hepatitis</strong></p>
-<ul>
-<li>Yellowing of the eyes</li>
-<li>Fatigue</li>
-<li>Loss of appetite</li>
-<li>General feeling of discomfort</li>
-<li>Abdominal pain</li>
-<li>Dark urine</li>
-<li>Itching</li>
-<li>Swelling</li>
-</ul>
+<br>
+\u2022Yellowing of the eyes<br />
+\u2022Fatigue<br />
+\u2022Loss of appetite<br />
+\u2022General feeling of discomfort<br />
+\u2022Abdominal pain<br />
+\u2022Dark urine<br />
+\u2022Itching<br />
+\u2022Swelling<br />
+<br>
 <p><strong>Dengue</strong></p>
-<ul>
-<li>Abdominal Pain</li>
-<li>Muscle Ache</li>
-<li>Chills</li>
-<li>Fatigue</li>
-<li>Fever</li>
-<li>Loss of appetite</li>
-<li>Nausea</li>
-<li>Vomiting</li>
-<li>Rashes</li>
-<li>Easy bruising</li>
-<li>Headache</li>
-<li>Sore throat</li>
-</ul>
+<br>
+\u2022Abdominal Pain<br />
+\u2022Muscle Ache<br />
+\u2022Chills<br />
+\u2022Fatigue<br />
+\u2022Fever<br />
+\u2022Loss of appetite<br />
+\u2022Nausea<br />
+\u2022Vomiting<br />
+\u2022Rashes<br />
+\u2022Easy bruising<br />
+\u2022Headache<br />
+\u2022Sore throat<br />
+<br>
 <p><strong>Malaria</strong></p>
-<ul>
-<li>Muscle Ache</li>
-<li>Chills</li>
-<li>Fatigue</li>
-<li>Fever</li>
-<li>Malaise</li>
-<li>Shivering</li>
-<li>Sweating</li>
-<li>Fast heart rate</li>
-<li>Headache</li>
-<li>Nausea</li>
-<li>Unhealthy pale appearance</li>
-</ul>
+<br>
+\u2022Muscle Ache<br />
+\u2022Chills<br />
+\u2022Fatigue<br />
+\u2022Fever<br />
+\u2022Malaise<br />
+\u2022Shivering<br />
+\u2022Sweating<br />
+\u2022Fast heart rate<br />
+\u2022Headache<br />
+\u2022Nausea<br />
+\u2022Unhealthy pale appearance<br />
+<br>
 <p><strong>Typhoid</strong></p>
-<ul>
-<li>High fever</li>
-<li>Chills</li>
-<li>Severe diarrhoea</li>
-<li>Headache</li>
-</ul>
+<br>
+\u2022High fever<br />
+\u2022Chills<br />
+\u2022Severe diarrhoea<br />
+\u2022Headache<br />
+<br>
 <p><strong>Appendicitis</strong></p>
-<ul>
-<li>Abdominal pain</li>
-<li>Chills</li>
-<li>Fever</li>
-<li>Loss of appetite</li>
-<li>General feeling of discomfort</li>
-<li>Nausea</li>
-<li>Vomiting</li>
-<li>Abdominal tenderness</li>
-</ul>
+<br>
+\u2022Abdominal pain<br />
+\u2022Chills<br />
+\u2022Fever<br />
+\u2022Loss of appetite<br />
+\u2022General feeling of discomfort<br />
+\u2022Nausea<br />
+\u2022Vomiting<br />
+\u2022Abdominal tenderness<br />
+<br>
 <p><strong>Gastroenteritis</strong></p>
-<ul>
-<li>Stomach pain</li>
-<li>Uneasiness of the stomach - vomiting</li>
-<li>Decreased body weight</li>
-<li>Sore to touch ???</li>
-<li>Yellow eyes, like jaundice</li>
-<li>Fever</li>
-<li>Muscle pain</li>
-<li>Retch - To have the action of vomiting, but not actually expelling vomit</li>
-</ul>
-<p><strong>Diarrhoea</strong></p>
-<ul>
-<li>Abdominal cramps</li>
-<li>Abdominal pains</li>
-<li>Urgency to go to the toilet</li>
-<li>Frequent passing of loose, watery faeces</li>
-<li>Nausea</li>
-<li>Vomiting.</li>
-</ul>
+<br>
+\u2022Stomach pain<br />
+\u2022Uneasiness of the stomach - vomiting<br />
+\u2022Decreased body weight<br />
+\u2022Sore to touch<br />
+\u2022Yellow eyes, like jaundice<br />
+\u2022Fever<br />
+\u2022Muscle pain<br />
+\u2022Retching sensation<br />
+<br>
 <p><strong>Cholera </strong></p>
-<ul>
-<li>Dehydration</li>
-<li>Dry mouth</li>
-<li>feeling weak</li>
-<li>Diarrhoea</li>
-<li>Vomiting</li>
-<li>Fever</li>
-<li>Hunger</li>
-<li>Stomach pain</li>
-</ul>
+<br>
+\u2022Dehydration<br />
+\u2022Dry mouth<br />
+\u2022feeling weak<br />
+\u2022Diarrhoea<br />
+\u2022Vomiting<br />
+\u2022Fever<br />
+\u2022Hunger<br />
+\u2022Stomach pain<br />
+<br>
 <p><strong>Common</strong> <strong>Cold</strong></p>
-<ul>
-<li>Cough</li>
-<li>Muscle pain</li>
-<li>Runny nose,</li>
-<li>Congestion</li>
-<li>sneezing</li>
-<li>Fever</li>
-<li>Chills</li>
-<li>Sore throat</li>
-<li>Phlegm while coughing</li>
-<li>Fatigue</li>
-<li>Tiredness/sleepiness</li>
-<li>Headache</li>
-<li>Dizziness</li>
-<li>Muscle pain</li>
-<li>Loss of appetite</li>
-</ul>
+<br>
+\u2022Cough<br />
+\u2022Muscle pain<br />
+\u2022Runny nose<br />
+\u2022Congestion<br />
+\u2022sneezing<br />
+\u2022Fever<br />
+\u2022Chills<br />
+\u2022Sore throat<br />
+\u2022Phlegm while coughing<br />
+\u2022Fatigue<br />
+\u2022Tiredness<br />
+\u2022Headache<br />
+\u2022Dizziness<br />
+\u2022Muscle pain<br />
+\u2022Loss of appetite<br />
+<br>
 <p><strong>Food poisoning </strong></p>
-<ul>
-<li>Uneasiness</li>
-<li>Vomiting</li>
-<li>Diarrhoea</li>
-<li>Loss of appetite</li>
-<li>Indigestion</li>
-<li>Weakness</li>
-<li>Dizziness</li>
-<li>Tiredness</li>
-<li>Stomach pain</li>
-<li>Fevers</li>
-<li>Dehydration</li>
-</ul>
+<br>
+\u2022Uneasiness<br />
+\u2022Vomiting<br />
+\u2022Diarrhoea<br />
+\u2022Loss of appetite<br />
+\u2022Indigestion<br />
+\u2022Weakness<br />
+\u2022Dizziness<br />
+\u2022Tiredness<br />
+\u2022Stomach pain<br />
+\u2022Fevers<br />
+\u2022Dehydration<br />
+<br>
 <p><strong>Gastritis</strong></p>
-<ul>
-<li>Stomach pain</li>
-<li>Vomiting</li>
-<li>Uneasiness</li>
-<li>Dizziness</li>
-<li>Loss of appetite</li>
-<li>Indigestion</li>
-</ul>
+<br>
+\u2022Stomach pain<br />
+\u2022Vomiting<br />
+\u2022Uneasiness<br />
+\u2022Dizziness<br />
+\u2022Loss of appetite<br />
+\u2022Indigestion<br />
+<br>
 <p><strong>Conjunctivitis</strong></p>
-<ul>
-<li>Redness in one or both eyes</li>
-<li>Itchiness in one or both eyes</li>
-<li>A gritty feeling in one or both eyes</li>
-<li>A discharge in one or both eyes that forms a crust during the night that may prevent your eye or eyes from opening in the morning</li>
-<li>Tearing</li>
-</ul>
+<br>
+\u2022Redness in one or both eyes<br />
+\u2022Itchiness in one or both eyes<br />
+\u2022A gritty feeling in one or both eyes<br />
+\u2022A discharge in one or both eyes that forms a crust during the night that may prevent your eye or eyes from opening in the morning<br />
+\u2022Tearing<br />
+<br>
 <p><strong>Encephalitis</strong></p>
-<ul>
-<li>Headache</li>
-<li>Fever</li>
-<li>Aches in muscles or joints</li>
-<li>Fatigue or weakness</li>
-<li>Confusion, agitation or hallucinations</li>
-<li>Seizures</li>
-<li>Loss of sensation or paralysis in certain areas of the face or body</li>
-<li>Muscle weakness</li>
-<li>Problems with speech or hearing</li>
-<li>Loss of consciousness</li>
-</ul>]]></string>
+<br>
+\u2022Headache<br />
+\u2022Fever<br />
+\u2022Aches in muscles or joints<br />
+\u2022Fatigue or weakness<br />
+\u2022Confusion, agitation or hallucinations<br />
+\u2022Seizures<br />
+\u2022Loss of sensation or paralysis in certain areas of the face or body<br />
+\u2022Muscle weakness<br />
+\u2022Problems with speech or hearing<br />
+\u2022Loss of consciousness<br />
+<br>]]></string>
 
     <string-array name="symptom_list">
         <item>Fever</item>
@@ -215,7 +206,6 @@
         <item>Easy bruising</item>
         <item>Sore throat</item>
         <item>Sweating</item>
-        <item>Shivering</item>
         <item>Fast heart rate</item>
         <item>Diarrhoea</item>
         <item>Abdominal tenderness</item>
@@ -226,8 +216,6 @@
         <item>Hunger</item>
         <item>Stomach pain</item>
         <item>Dizziness</item>
-        <item>Tiredness</item>
-        <item>Weakness</item>
         <item>Redness of eyes</item>
         <item>Itching of eyes</item>
         <item>Discharge from eyes</item>
@@ -257,7 +245,7 @@
         <item>Do you feel that you have a buildup of gas in your stomach?</item>
         <item>Have you been having an uneasy sensation to vomit?</item>
         <item>Do your eyes seem to be yellow?</item>
-        <item>Have you been eating properly?</item>
+        <item>Have you not been eating properly?</item>
         <item>Is your urine darker than usual?</item>
         <item>Are you experiencing itching?</item>
         <item>Is any part of your body swollen?</item>
@@ -266,7 +254,6 @@
         <item>Have you noticed that you get bruises easily?</item>
         <item>Do you have a sore throat?</item>
         <item>Have you been sweating more than usual?</item>
-        <item>Have you had bouts of shivering?</item>
         <item>Is your heart beating fast, even at rest?</item>
         <item>Have you had diarrhoea?</item>
         <item>Do you feel pain when you touch/press around your stomach?</item>
@@ -277,8 +264,6 @@
         <item>Have you had excess hunger?</item>
         <item>Have you had stomach pain?</item>
         <item>Have you been feeling dizzy?</item>
-        <item>Have you been feeling more tired than usual?</item>
-        <item>Have you been feeling weak?</item>
         <item>Are you eyes redder than usual?</item>
         <item>Are your eyes itching?</item>
         <item>Is there some discharge on your eyelids in the morning?</item>

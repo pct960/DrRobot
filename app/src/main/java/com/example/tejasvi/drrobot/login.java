@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -46,11 +47,13 @@ public class login extends AppCompatActivity {
                 String sUsername = usernameEditText.getText().toString();
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(signin_email.getText().toString()).matches()){
+                    progressDialog.dismiss();
                     Toast.makeText(login.this, "Please enter a Valid E-Mail Address!",
                             Toast.LENGTH_LONG).show();
                 }
 
                 else if (sUsername.matches("")) {
+                    progressDialog.dismiss();
                     Toast.makeText(login.this, "Enter your Password", Toast.LENGTH_SHORT).show();
                 }
 
@@ -58,19 +61,19 @@ public class login extends AppCompatActivity {
                     x=1;
                 }
 
-                if(x==1);
+                if(x==1)
                 {
                     mAuth.signInWithEmailAndPassword(signin_email.getText().toString(),signin_passwd.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful())
                             {
-                                Toast.makeText(login.this,"Incorrect email or password", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                Exception e = task.getException();
+                                Toast.makeText(login.this,"Incorrect email or password "+e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                             else
                             {
-
-
                                 progressDialog.dismiss();
                                 Intent Intent_main_menu = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(Intent_main_menu);

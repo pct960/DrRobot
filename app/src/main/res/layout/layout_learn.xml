@@ -8,8 +8,8 @@
         android:layout_height="match_parent"
         android:padding="12dp" >
 
-        <WebView
-            android:id="@+id/learn_web_view"
+        <TextView
+            android:id="@+id/learn_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

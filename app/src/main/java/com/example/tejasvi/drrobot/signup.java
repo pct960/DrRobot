@@ -23,8 +23,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -141,12 +143,14 @@ public class signup extends AppCompatActivity {
 
 
 
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwd.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwd.getText().toString()).addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (!task.isSuccessful()) {
+                    FirebaseNetworkException e = (FirebaseNetworkException)task.getException();
                     progressDialog.dismiss();
-                    Toast.makeText(signup.this, "Error signing up", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(signup.this, "Error signing up"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
                 else

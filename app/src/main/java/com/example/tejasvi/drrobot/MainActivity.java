@@ -1,5 +1,6 @@
 package com.example.tejasvi.drrobot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    boolean doubleBackToExitPressedOnce;
     FragmentManager fragmentManager = getSupportFragmentManager();
     ArrayList<String> chosensymptoms=new ArrayList<String>();
     @Override
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         setTitle("Perform a quick diagnosis");
-        fragmentManager.beginTransaction().replace(R.id.fm1,  new diagnose()).commit();
+        fragmentManager.beginTransaction().replace(R.id.fm1,  new diagnose()).addToBackStack(null).commit();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,18 +42,29 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
+        doubleBackToExitPressedOnce=false;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        } else if(doubleBackToExitPressedOnce && fragmentManager.getBackStackEntryCount()==1)
+        {
+            moveTaskToBack(true);
+            MainActivity.this.finish();
+        }
+        else if(fragmentManager.getBackStackEntryCount()==1) {
+            doubleBackToExitPressedOnce = true;
+            Toast.makeText(getApplicationContext(),"Press back again to exit",Toast.LENGTH_SHORT).show();
+        }
+        else if(fragmentManager.getBackStackEntryCount()!=1)
+        {
+            fragmentManager.popBackStack();
         }
     }
 
@@ -72,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             setTitle("Settings");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).addToBackStack(null).commit();
         }
 
         return super.onOptionsItemSelected(item);
@@ -91,28 +104,28 @@ public class MainActivity extends AppCompatActivity
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("symptoms", chosensymptoms);
             d.setArguments(bundle);
-            fragmentManager.beginTransaction().replace(R.id.fm1,  d).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,d).addToBackStack(null).commit();
         }
 
         else if(id==R.id.nav_settings)
         {
             setTitle("Settings");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new settings()).addToBackStack(null).commit();
         }
         else if(id==R.id.nav_learn)
         {
             setTitle("Learn more");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new learn()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new learn()).addToBackStack(null).commit();
         }
         else if(id==R.id.nav_help)
         {
             setTitle("Help");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new help()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new help()).addToBackStack(null).commit();
         }
         else if(id==R.id.nav_feedback)
         {
             setTitle("Contact Us");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new contact()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new contact()).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

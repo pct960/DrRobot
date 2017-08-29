@@ -104,7 +104,7 @@ public class splashscreen extends AppCompatActivity {
         Thread splashTimer = new Thread() {
             public void run() {
                 try {
-                    sleep(4000);
+                    sleep(2000);
                     Intent Intent_main_menu = new Intent(getApplicationContext(),welcome.class);
                     startActivity(Intent_main_menu);
 
