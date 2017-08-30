@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
         else if(id==R.id.nav_learn)
         {
             setTitle("Learn more");
-            fragmentManager.beginTransaction().replace(R.id.fm1,new learn()).addToBackStack(null).commit();
+            fragmentManager.beginTransaction().replace(R.id.fm1,new result()).addToBackStack(null).commit();
         }
         else if(id==R.id.nav_help)
         {

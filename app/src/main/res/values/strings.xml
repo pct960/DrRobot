@@ -282,7 +282,7 @@
         <item>Female</item>
         <item>Other</item>
     </string-array>
-    
+
     <string name="help_intro">
         Hello, and thanks for using the Dr. Robot app!! Dr. Robot is a tool meant for preliminary diagnosis, i.e., you yourself can
         check if you have a disease in case you have felt under the weather. It works by asking you a series of questions, and narrowing
@@ -327,4 +327,7 @@
     </string>
     <string name="hint">Add feedback here</string>
     <string name="buttonstuff">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="result_header">Dr. Robot thinks you may have ...</string>
 </resources>

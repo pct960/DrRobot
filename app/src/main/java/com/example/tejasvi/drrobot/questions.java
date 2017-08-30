@@ -49,6 +49,8 @@ import org.json.simple.parser.JSONParser;
 public class questions extends Fragment {
 
     static String database[][];
+    ArrayList<String> chosensymptoms=new ArrayList<String>();
+
     static Map<String,String> symptom_question=new ConcurrentHashMap<>();
     static Map<String,String> disease_list=new ConcurrentHashMap<>();
     static Map<String,String> symptom_column=new ConcurrentHashMap<>();
@@ -61,7 +63,6 @@ public class questions extends Fragment {
     static Stack<String> priority_stack=new Stack<>();
 
     static Map<String,String> positive_disease_list=new ConcurrentHashMap<>();
-    // TODO: set 5 questions per view. make fb session to do this
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
@@ -322,6 +323,11 @@ public class questions extends Fragment {
         listItems = new ArrayList<>();
         final String questions[]=getResources().getStringArray(R.array.questions);
 
+        Bundle arguments = getArguments();
+        if(arguments != null)
+        {
+            //hala
+        }
         Button btn_next=(Button)v.findViewById(R.id.btn_questions_next);
 
        try
