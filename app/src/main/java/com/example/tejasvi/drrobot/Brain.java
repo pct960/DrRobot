@@ -3,11 +3,16 @@ package com.example.tejasvi.drrobot;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,47 +40,43 @@ public class Brain
 
     static void init()throws Exception
     {
-        database = new String[][]{{"","Fever", "Chills","Cough","Muscle Ache","Sneezing","Headache","Fatigue","Congestion","Bloody Diarrhoea",//9
-                "Abdominal Pain","Inability To Empty Bowels","Cramps","Indigestion","Vomiting","Flatulence","Nausea","Yellowing Of Eyes",//17
-                "Loss Of Appetite","Dark Urine","Itching","Swelling","Body Pain","Rashes","Easy Bruising","Sore Throat","Sweating",//26
-                "Shivering","Fast Heart Rate","Diarrhoea","Abdominal Tenderness","Decreased Body Weight","Retching","Dehydration",//32
-                "Dry Mouth","Hunger","Stomach Pain","Dizziness","Tiredness","Weakness","Redness Of Eyes","Itching Of Eyes",
-                "Discharge From Eyes","Tearing Up Of Eyes","Runny Nose","Paralysis","Confusion","Coughing Blood","Night Sweats",
-                "Coughing Phlegm"},
-                {"Influenza","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0"},
-                {"Dysentery","1","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Hepatitis","0","0","0","0","0","0","1","0","0","1","0","0","0","0","0","0","1","1","1","1","1","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Dengue","1","1","0","1","0","1","1","0","0","1","0","0","0","1","0","1","0","1","0","0","0","0","1","1","1","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Malaria","1","1","0","1","0","1","1","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","1","1",
-                        "1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Typhoid","1","1","0","0","0","1","1","0","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Appendicitis","1","1","0","0","0","0","0","0","0","1","0","0","0","1","0","1","0","1","0","0","0","0","0","0","0","0","0",
-                        "0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Gastroenteritis","1","0","0","1","0","0","0","0","0","0","0","0","0","1","0","0","1","0","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","1","1","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Cholera","1","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","1","0","0","1","1","1","1","0","0","1","0","0","0","0","0","0","0","0","0","0"},
-                {"Common Cold","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","1","0","0",
-                        "0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","1","0","0","0","0","1"},
-                {"Food Poisoning","1","0","0","0","0","0","1","0","0","0","0","0","1","1","0","0","0","1","0","0","0","0","0","0","0","0","0",
-                        "0","1","0","0","1","0","0","1","1","0","1","0","0","0","0","0","0","0","0","0","0"},
-                {"Gastritis","0","0","0","0","0","0","0","0","0","0","0","0","1","1","0","0","0","1","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0"},
-                {"Tuberculosis","1","1","1","0","0","0","1","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0",//27
-                        "0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","1","0"},
-                {"Encephalitis","1","0","0","1","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","1","1","0","0","0"},
-                {"Conjunctivitis","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",
-                        "0","0","0","0","0","0","0","0","0","0","0","1","1","1","1","0","0","0","0","0","0"}};
+
 
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(new FileReader("symptom-question.json"));
         org.json.simple.JSONObject jsonObject = (org.json.simple.JSONObject) obj;
+        int row=-1,j;
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ",";
+        database=new String[16][47];
+
+        br = new BufferedReader(new FileReader("myfile.csv"));
+
+        try {
+
+            while ((line = br.readLine()) != null) {
+
+                String[] in = line.split(cvsSplitBy);
+                j = -1;row++;int len=in.length;
+                for (int k=0;k<len;k++)
+                    database[row][++j] = in[k];
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         for(int i=0;i<15;i++)
         {
@@ -262,16 +263,21 @@ public class Brain
 
     }
 
-    static <K, V extends Comparable<? super V>> Map<K, V> sortByValueAsc(Map<K, V> map) {
-        return map.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByValue())/*Collections.reverseOrder()*/
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new
-                ));
+    public static <K, V extends Comparable<? super V>> Map<K, V>
+    sortByValueAsc(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+        Collections.sort( list, new Comparator<Map.Entry<K, V>>() {
+            @Override
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
     }
-    
+
 }
