@@ -7,27 +7,27 @@ package com.example.tejasvi.drrobot;
 public class ListItem
 {
 
-    String question;
-    String response;
+    static String question;
+    static String response;
 
-    public ListItem(String question, String response) {
-        this.question = question;
-        this.response = response;
+    public ListItem(String quest, String resp) {
+        question = quest;
+        response = resp;
     }
 
-    public String getQuestion() {
+    public static String getQuestion() {
         return question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public static void setQuestion(String quest) {
+        question = quest;
     }
 
-    public String getResponse() {
+    public static String getResponse() {
         return response;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public static void setResponse(String resp) {
+        response = resp;
     }
 }

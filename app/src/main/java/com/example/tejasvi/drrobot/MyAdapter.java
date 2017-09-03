@@ -67,15 +67,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
                 if(answer.getText().equals("Yes"))
                 {
-                    Toast.makeText(context, "You clicked yes", Toast.LENGTH_SHORT).show();
-                    //SEND REPLY
-                    //myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
+                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
+                    ListItem.setResponse("Yes");
                 }
                 else if (answer.getText().equals("No"))
                 {
-                    Toast.makeText(context, "You clicked no", Toast.LENGTH_SHORT).show();
-                    //SEND REPLY
-                    //myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
+                    myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Questions").child(holder.question.getText().toString()).setValue(answer.getText());
+                    ListItem.setResponse("No");
                 }
 
             }
