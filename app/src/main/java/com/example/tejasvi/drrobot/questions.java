@@ -118,7 +118,18 @@ public class questions extends Fragment {
 
     void fire_question()
     {
+        if(positive&&(!priority_stack.isEmpty()))
+        {
+            present_symptom = priority_stack.pop();
+            present_question = symptom_question.get(present_symptom);
 
+            listItems.clear();
+            ListItem listItem=new ListItem(present_question,"Yes");
+            listItems.add(listItem);
+
+            adapter = new MyAdapter(listItems, v.getContext());
+            recyclerView.setAdapter(adapter);
+        }
         if (priority_stack.isEmpty()) {
             positive = true;
             positive_questions();
@@ -219,8 +230,6 @@ public class questions extends Fragment {
                     elimination_list.add(database[0][j]);
                     priority_stack.push(database[0][j]);
                     fire_question();
-                    getResponse();
-                    if (response == 0) initiate_strike(database[0][j]);
                     if (disease_list.get(s) == null) j = 50;
                 }
             }
@@ -299,7 +308,7 @@ public class questions extends Fragment {
                   for (String s : disease_list.keySet()) {
 
                       listItems.clear();
-                      ListItem listItem=new ListItem("It appears that you have :"+s,"Yes");
+                      ListItem listItem=new ListItem("It appears that you have "+s,"Yes");
                       listItems.add(listItem);
 
                       adapter = new MyAdapter(listItems, v.getContext());
