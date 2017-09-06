@@ -327,4 +327,5 @@
     </string>
     <string name="hint">Add feedback here</string>
     <string name="buttonstuff">Send</string>
+    <string name="result_header">Dr. Robot thinks you may have...</string>
 </resources>
