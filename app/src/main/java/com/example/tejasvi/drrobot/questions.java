@@ -229,12 +229,15 @@ public class questions extends Fragment {
                 if ((database[Integer.parseInt(disease_row.get(s))][j].equals("1")) && (!elimination_list.contains(database[0][j]))) {
                     elimination_list.add(database[0][j]);
                     priority_stack.push(database[0][j]);
-                    fire_question();
                     if (disease_list.get(s) == null) j = 50;
                 }
             }
         }
 
+    }
+
+    void cleanUp()
+    {
         Map<String,String>temp = sortByValueAsc(disease_list);
 
         int count = 0;
@@ -248,7 +251,6 @@ public class questions extends Fragment {
                 disease_list.remove(s);
             }
         }
-
     }
 
     public <K, V extends Comparable<? super V>> Map<K, V>
@@ -301,26 +303,32 @@ public class questions extends Fragment {
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                if(positive&&priority_stack.isEmpty())
+                {
+                    cleanUp();
+                }
 
-              if(disease_list.size()==1)
-              {
-                  for (String s : disease_list.keySet()) {
+                if(disease_list.size()==1)
+                {
+                    for (String s : disease_list.keySet())
+                    {
 
-                      listItems.clear();
-                      ListItem listItem=new ListItem("It appears that you have "+s,"Yes");
-                      listItems.add(listItem);
+                        listItems.clear();
+                        ListItem listItem=new ListItem("It appears that you have "+s,"Yes");
+                        listItems.add(listItem);
 
-                      adapter = new MyAdapter(listItems, v.getContext());
-                      recyclerView.setAdapter(adapter);
-                  }
-              }
-              else
-              {
-                  getResponse();
-                  if (response == 0) initiate_strike(present_symptom);
-                  fire_question();
-              }
+                        adapter = new MyAdapter(listItems, v.getContext());
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+                else
+                {
+                    getResponse();
+                    if (response == 0) initiate_strike(present_symptom);
+                    fire_question();
+                }
             }
         });
 
