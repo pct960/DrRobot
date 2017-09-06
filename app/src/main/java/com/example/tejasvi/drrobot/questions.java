@@ -68,6 +68,10 @@ public class questions extends Fragment {
     private List<ListItem> listItems;
     View v;
     int question_count=2;
+    void  responce()
+    {
+
+    }
 
     void init()throws Exception
     {
@@ -311,7 +315,14 @@ public class questions extends Fragment {
         }
         return result;
     }
+    public static questions newInstance(Bundle bundle) {
+        questions myFragment = new questions();
 
+        myFragment.setArguments(bundle);
+
+        return myFragment
+                ;
+    }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         v = inflater.inflate(R.layout.activity_questions, container, false);
@@ -328,6 +339,8 @@ public class questions extends Fragment {
         {
             //hala
         }
+        String[] lst=arguments.getStringArray("symptoms");
+        Toast.makeText(v.getContext(), lst.toString(), Toast.LENGTH_SHORT).show();
         Button btn_next=(Button)v.findViewById(R.id.btn_questions_next);
 
        try

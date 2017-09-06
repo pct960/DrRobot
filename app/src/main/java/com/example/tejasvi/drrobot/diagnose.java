@@ -110,17 +110,21 @@ public class diagnose extends Fragment {
             btn_diagnose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+ArrayList<String> lst=new ArrayList<String>();
                     for(int i=0;i<chosensymptoms.size();i++)
                     {
                         String selection=chosensymptoms.get(i).getText().toString();
+                        lst.add(chosensymptoms.get(i).getText().toString());
                         myRef.child("Session").child(mAuth.getCurrentUser().getUid()).child("Symptoms").child(selection).setValue(1);
 
 
                     }
 
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("symptoms", lst);
+                    questions q=questions.newInstance(bundle);
                     getFragmentManager().beginTransaction()
-                            .replace(((ViewGroup) getView().getParent()).getId(), new questions())
+                            .replace(((ViewGroup) getView().getParent()).getId(), q)
                             .addToBackStack(null)
                             .commit();
                 }
