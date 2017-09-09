@@ -188,44 +188,44 @@
         <item>Headache</item>
         <item>Fatigue</item>
         <item>Congestion</item>
-        <item>Bloody diarrhoea</item>
-        <item>Abdominal pain</item>
-        <item>Inability to empty bowels</item>
+        <item>Bloody Diarrhoea</item>
+        <item>Abdominal Pain</item>
+        <item>Inability To Empty Bowels</item>
         <item>Cramps</item>
         <item>Indigestion</item>
         <item>Vomiting</item>
         <item>Flatulence</item>
         <item>Nausea</item>
-        <item>Yellowing of eyes</item>
-        <item>Loss of appetite</item>
-        <item>Dark urine</item>
+        <item>Yellowing Of Eyes</item>
+        <item>Loss Of Appetite</item>
+        <item>Dark Urine</item>
         <item>Itching</item>
         <item>Swelling</item>
-        <item>Body pain</item>
+        <item>Body Pain</item>
         <item>Rashes</item>
-        <item>Easy bruising</item>
-        <item>Sore throat</item>
+        <item>Easy Bruising</item>
+        <item>Sore Throat</item>
         <item>Sweating</item>
-        <item>Fast heart rate</item>
+        <item>Fast Heart Rate</item>
         <item>Diarrhoea</item>
-        <item>Abdominal tenderness</item>
-        <item>Decreased body weight</item>
+        <item>Abdominal Tenderness</item>
+        <item>Decreased Body Weight</item>
         <item>Retching</item>
         <item>Dehydration</item>
-        <item>Dry mouth</item>
+        <item>Dry Mouth</item>
         <item>Hunger</item>
-        <item>Stomach pain</item>
+        <item>Stomach Pain</item>
         <item>Dizziness</item>
-        <item>Redness of eyes</item>
-        <item>Itching of eyes</item>
-        <item>Discharge from eyes</item>
-        <item>Tearing up of eyes</item>
-        <item>Runny nose</item>
+        <item>Redness Of Eyes</item>
+        <item>Itching Of Eyes</item>
+        <item>Discharge From Eyes</item>
+        <item>Tearing Up Of Eyes</item>
+        <item>Runny Nose</item>
         <item>Paralysis</item>
         <item>Confusion</item>
-        <item>Coughing blood</item>
-        <item>Night sweats</item>
-        <item>Coughing phlegm</item>
+        <item>Coughing Blood</item>
+        <item>Night Sweats</item>
+        <item>Coughing Phlegm</item>
     </string-array>
 
     <string-array name="questions">

@@ -78,7 +78,7 @@ public class questions extends Fragment {
     String present_question;
 
     void logic() {
-        int count = 0, threshold = symptoms.size() - 1;
+        int count = 0, threshold = symptoms.size() - 2;
 
         for (int i = 1; i < 16; i++) {
             for (String symptom_name : symptoms) {
@@ -152,56 +152,14 @@ public class questions extends Fragment {
 
     void getResponse()
     {
-//        FirebaseAuth mAuth=FirebaseAuth.getInstance();
-//        FirebaseDatabase database=FirebaseDatabase.getInstance();
-//        DatabaseReference myRef=database.getReference("Session/"+mAuth.getCurrentUser().getUid());
-//
-//        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                for(DataSnapshot node: dataSnapshot.getChildren())
-//                {
-//                    if(node.getKey().equals("Questions"))
-//                    {
-//                        for(DataSnapshot node1:node.getChildren())
-//                        {
-//                            if(node1.getKey().equals(present_question))
-//                            {
-//                                if(node1.getValue().toString().equals("No"))
-//                                {
-//                                    response=0;
-//                                    Toast.makeText(v.getContext(), "Response was no", Toast.LENGTH_SHORT).show();
-//                                }
-//                                else
-//                                {
-//                                    response=1;
-//                                    Toast.makeText(v.getContext(), "Response was yes", Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
         if(ListItem.getResponse().equals("Yes"))
         {
-            Toast.makeText(v.getContext(), "Response was yes", Toast.LENGTH_SHORT).show();
             response=1;
         }
         else
         {
-            Toast.makeText(v.getContext(), "Response was no", Toast.LENGTH_SHORT).show();
             response=0;
         }
-
-
 
     }
 
@@ -283,7 +241,7 @@ public class questions extends Fragment {
         Button btn_next = (Button) v.findViewById(R.id.btn_questions_next);
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = db.getReference("Symptom-Question");
+        final DatabaseReference myRef = db.getReference("Symptom-Question");
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -300,6 +258,7 @@ public class questions extends Fragment {
             }
         });
 
+        final DatabaseReference myRef1=db.getReference();
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,6 +280,8 @@ public class questions extends Fragment {
 
                         adapter = new MyAdapter(listItems, v.getContext());
                         recyclerView.setAdapter(adapter);
+
+                        myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                     }
                 }
                 else
