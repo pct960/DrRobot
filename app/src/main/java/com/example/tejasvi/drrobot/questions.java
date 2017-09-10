@@ -64,6 +64,10 @@ public class questions extends Fragment {
     static ArrayList<String> elimination_list = new ArrayList<>();
     static Stack<String> priority_stack = new Stack<>();
 
+    static Map<String,Integer> hits=new ConcurrentHashMap<>();
+    static Map<String,Integer> total_symptoms=new ConcurrentHashMap<>();
+    static Map<String,Double> hit_ratio=new ConcurrentHashMap<>();
+
     static Map<String, String> positive_disease_list = new ConcurrentHashMap<>();
     // TODO: set 5 questions per view. make fb session to do this
     private RecyclerView recyclerView;
@@ -113,7 +117,41 @@ public class questions extends Fragment {
         for (Map.Entry<String, Integer> entry : common_symptoms.entrySet())
             priority_stack.push(entry.getKey());
 
+        count=0;
+
+        for (String s : disease_list.keySet())
+        {
+            count=0;
+            for (int j = 1; j < 47; j++)
+            {
+                if (database[Integer.parseInt(disease_row.get(s))][j].equals("1")) count++;
+
+                total_symptoms.put(s,count);
+            }
+        }
+
         fire_question();
+    }
+
+    void initiate_hit(String symptom)
+    {
+        for (String s : disease_list.keySet()) {
+            if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {
+
+                int hit_count=0;
+
+                if(hits.get(s)!=null) hit_count=hits.get(s);
+
+                hit_count++;
+
+                hits.put(s,hit_count);
+
+                double ratio=(hit_count)/total_symptoms.get(s);
+
+                hit_ratio.put(s,ratio);
+
+            }
+        }
     }
 
     void fire_question()
@@ -209,6 +247,16 @@ public class questions extends Fragment {
                 disease_list.remove(s);
             }
         }
+
+        final FirebaseDatabase database=FirebaseDatabase.getInstance();
+        final DatabaseReference myRef=database.getReference();
+        final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
+        for(Map.Entry<String,Double> map : hit_ratio.entrySet())
+        {
+            myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child(map.getKey()).setValue(map.getValue());
+        }
+
     }
 
     public <K, V extends Comparable<? super V>> Map<K, V>
@@ -264,7 +312,7 @@ public class questions extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(positive&&priority_stack.isEmpty())
+                if(priority_stack.isEmpty())
                 {
                     cleanUp();
                 }
@@ -288,11 +336,11 @@ public class questions extends Fragment {
                 {
                     getResponse();
                     if (response == 0) initiate_strike(present_symptom);
+                    else if(response==1)initiate_hit(present_symptom);
                     fire_question();
                 }
             }
         });
-
 
         return v;
 

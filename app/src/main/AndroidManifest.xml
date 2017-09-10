@@ -36,14 +36,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".diagnose" />
         <activity android:name=".questions" />
-        <activity
-            android:name=".welcome" />
+        <activity android:name=".welcome" />
         <activity android:name=".login" />
         <activity android:name=".signup" />
         <activity android:name=".settings" />
         <activity android:name=".editprofile" />
         <activity android:name=".update_email" />
-        <activity android:name=".update_password"></activity>
+        <activity android:name=".update_password" />
+        <activity android:name=".result"></activity>
     </application>
 
 </manifest>
