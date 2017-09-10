@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -70,15 +71,23 @@ public class result extends Fragment
 
     void go()
     {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference();
+        FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
         NavigableMap<String,Double> navigableMap=map.descendingMap();
 
         for(Map.Entry<String,Double> entry : navigableMap.entrySet())
         {
-            Result_ListItem listItem=new Result_ListItem(entry.getKey(),"Probability : "+Double.parseDouble(entry.getValue().toString()));
+            double prob=Double.parseDouble(entry.getValue().toString())*100;
+            DecimalFormat df=new DecimalFormat("00.00");
+            Result_ListItem listItem=new Result_ListItem(entry.getKey(),"Probability : "+df.format(prob)+"%");
             listItems.add(listItem);
         }
 
         adapter = new Result_MyAdapter(listItems, v.getContext());
         recyclerView.setAdapter(adapter);
+
+        myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
     }
 }

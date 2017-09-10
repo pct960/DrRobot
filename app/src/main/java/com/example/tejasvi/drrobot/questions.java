@@ -203,9 +203,13 @@ public class questions extends Fragment {
 
                 strike_count++;
 
-                if (strike_count == 3) {
+                if (strike_count == 3)
+                {
                     disease_list.remove(s);
-                } else {
+                    hit_ratio.remove(s);
+                }
+                else
+                {
                     disease_list.put(s, String.valueOf(strike_count));
                 }
 
@@ -311,6 +315,7 @@ public class questions extends Fragment {
                     if(positive)
                     {
                         cleanUp();
+                        myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                         getFragmentManager().beginTransaction()
                                 .replace(((ViewGroup) getView().getParent()).getId(), new result())
                                 .addToBackStack(null)
