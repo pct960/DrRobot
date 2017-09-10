@@ -80,6 +80,8 @@ public class questions extends Fragment {
     String csv;
     String present_symptom;
     String present_question;
+    int lastyes=0;
+    int lastno=0;
 
     void logic() {
         int count = 0, threshold = symptoms.size() - 2;
@@ -174,6 +176,9 @@ public class questions extends Fragment {
 
     void fire_question()
     {
+        Log.d("baba",priority_stack.toString());
+        Log.d("baba",disease_list.toString());
+        Log.d("baba","------------------------------------------------------------------------------");
         if(positive&&(!priority_stack.isEmpty()))
         {
             present_symptom = priority_stack.pop();
@@ -209,13 +214,44 @@ public class questions extends Fragment {
         if(ListItem.getResponse().equals("Yes"))
         {
             response=1;
+            lastyes=0;
+            lastno++;
         }
         else
         {
             response=0;
+            lastno=0;
+            lastyes++;
         }
+        if(lastno>15) {//i.e. continuous yes's
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-    }
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("???").setValue("100");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .addToBackStack(null)
+                    .commit();
+
+
+        }
+        else if(lastyes>15){
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
+
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing...").setValue("100");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .addToBackStack(null)
+                    .commit();
+            }
+        }
+            //dsd
+
+
     void initiate_strike(String symptom) {
         for (String s : disease_list.keySet()) {
             if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {

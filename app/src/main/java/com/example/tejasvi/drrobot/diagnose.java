@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class diagnose extends Fragment {
         v = inflater.inflate(R.layout.activity_diagnose, container, false);
         count=1;
         margin=25;
+        chosensymptoms.clear();
         initsymptom=(AutoCompleteTextView)v.findViewById(R.id.symptoms1);
         chosensymptoms.add(initsymptom);
         symptom_list=getResources().getStringArray(R.array.symptom_list);
@@ -58,6 +60,7 @@ public class diagnose extends Fragment {
     {
         count++;
 
+Log.d("yaya", Integer.toString(chosensymptoms.size()));
         if(count>=5)
         {
             Toast.makeText(v.getContext(), "You can only add a maximum of five symptoms at a time ", Toast.LENGTH_SHORT).show();
