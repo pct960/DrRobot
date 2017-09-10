@@ -191,7 +191,7 @@ public class questions extends Fragment {
             myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child(map.getKey()).setValue("1");
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
-                    .addToBackStack(null)
+                    .disallowAddToBackStack()
                     .commit();
         }
 
@@ -247,7 +247,7 @@ public class questions extends Fragment {
                 myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Everything?? - Go see a doctor fast!").setValue("1");
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
-                    .addToBackStack(null)
+                    .disallowAddToBackStack()
                     .commit();
 
 
@@ -261,7 +261,7 @@ public class questions extends Fragment {
                 myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing? - Have you missed out a symptom ?").setValue("100");
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
-                    .addToBackStack(null)
+                    .disallowAddToBackStack()
                     .commit();
             }
         }
@@ -383,7 +383,7 @@ public class questions extends Fragment {
                         myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                         getFragmentManager().beginTransaction()
                                 .replace(((ViewGroup) getView().getParent()).getId(), new result())
-                                .addToBackStack(null)
+                                .disallowAddToBackStack()
                                 .commit();
                     }
                     else
