@@ -84,6 +84,7 @@ public class questions extends Fragment {
     int lastno=0;
 
     void logic() {
+        Log.d("baba",symptoms.toString());
         int count = 0, threshold = symptoms.size() - 2;
 
         for (int i = 1; i < 16; i++) {
@@ -176,10 +177,25 @@ public class questions extends Fragment {
 
     void fire_question()
     {
-        Log.d("baba",priority_stack.toString());
+        Log.d("baba",priority_stack.toString()+" "+priority_stack.size());
         Log.d("baba",disease_list.toString());
         Log.d("baba","------------------------------------------------------------------------------");
-        if(positive&&(!priority_stack.isEmpty()))
+        if(priority_stack.isEmpty())   //for just 1 disease
+        {
+            Log.d("baba","BARRAMUNDI");
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+            for(Map.Entry<String,String>map : disease_list.entrySet())
+
+            myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child(map.getKey()).setValue("1");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .addToBackStack(null)
+                    .commit();
+        }
+
+        else if(positive&&(!priority_stack.isEmpty()))
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
@@ -228,7 +244,7 @@ public class questions extends Fragment {
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("???").setValue("100");
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Everything?? - Go see a doctor fast!").setValue("1");
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
                     .addToBackStack(null)
@@ -242,7 +258,7 @@ public class questions extends Fragment {
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
 
-                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing...").setValue("100");
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing? - Have you missed out a symptom ?").setValue("100");
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
                     .addToBackStack(null)
