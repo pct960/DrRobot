@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +35,7 @@ public class result extends Fragment
     private RecyclerView.Adapter adapter;
     private List<Result_ListItem> listItems;
     View v;
-    TreeMap<String,Double> map=new TreeMap<String,Double>();
+    TreeMap<String,Double> map=new TreeMap<>(Collections.<String>reverseOrder());
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_result, container, false);
@@ -66,6 +67,19 @@ public class result extends Fragment
             }
         });
 
+        Button btn=(Button)v.findViewById(R.id.btn_result_ok);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new diagnose())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         return v;
     }
 
@@ -80,14 +94,14 @@ public class result extends Fragment
         for(Map.Entry<String,Double> entry : navigableMap.entrySet())
         {
             double prob=Double.parseDouble(entry.getValue().toString())*100;
-            DecimalFormat df=new DecimalFormat("00.00");
-            Result_ListItem listItem=new Result_ListItem(entry.getKey(),"Probability : "+df.format(prob)+"%");
+            int probability=(int)Math.round(prob);
+            Result_ListItem listItem=new Result_ListItem(entry.getKey().trim(),"Probability : "+probability+"%");
             listItems.add(listItem);
         }
 
         adapter = new Result_MyAdapter(listItems, v.getContext());
         recyclerView.setAdapter(adapter);
 
-        myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
+        //myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
     }
 }

@@ -130,6 +130,24 @@ public class questions extends Fragment {
             }
         }
 
+        for (String s : disease_list.keySet()) {
+            for (int j = 1; j < 47; j++) {
+                if ((database[Integer.parseInt(disease_row.get(s))][j].equals("1")) && (symptoms.contains(database[0][j]))) {
+                    int hit_count = 0;
+
+                    if (hits.get(s) != null) hit_count = hits.get(s);
+
+                    hit_count++;
+
+                    hits.put(s, hit_count);
+
+                    double ratio = (hit_count) / Double.parseDouble(total_symptoms.get(s).toString());
+
+                    hit_ratio.put(s, ratio);
+                }
+            }
+        }
+
         fire_question();
     }
 
@@ -162,7 +180,7 @@ public class questions extends Fragment {
             present_question = symptom_question.get(present_symptom);
 
             listItems.clear();
-            ListItem listItem=new ListItem(present_question,"Yes");
+            ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
 
             adapter = new MyAdapter(listItems, v.getContext());
@@ -174,7 +192,7 @@ public class questions extends Fragment {
             elimination_list.add(present_symptom);
 
             listItems.clear();
-            ListItem listItem=new ListItem(present_question,"Yes");
+            ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
 
             adapter = new MyAdapter(listItems, v.getContext());
@@ -207,6 +225,10 @@ public class questions extends Fragment {
                 {
                     disease_list.remove(s);
                     hit_ratio.remove(s);
+                    hits.remove(s);
+
+                    Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -232,20 +254,6 @@ public class questions extends Fragment {
 
     void cleanUp()
     {
-//        Map<String,String>temp = sortByValueAsc(disease_list);
-//
-//        int count = 0;
-//
-//        for (String s:temp.keySet())
-//        {
-//            count++;
-//
-//            if (count > 1)
-//            {
-//                disease_list.remove(s);
-//            }
-//        }
-
         final FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference myRef=database.getReference();
         final FirebaseAuth mAuth=FirebaseAuth.getInstance();
