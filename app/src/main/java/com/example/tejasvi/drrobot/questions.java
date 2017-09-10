@@ -146,7 +146,7 @@ public class questions extends Fragment {
 
                 hits.put(s,hit_count);
 
-                double ratio=(hit_count)/total_symptoms.get(s);
+                double ratio=(hit_count)/Double.parseDouble(total_symptoms.get(s).toString());
 
                 hit_ratio.put(s,ratio);
 
@@ -168,11 +168,7 @@ public class questions extends Fragment {
             adapter = new MyAdapter(listItems, v.getContext());
             recyclerView.setAdapter(adapter);
         }
-        if (priority_stack.isEmpty()) {
-            positive = true;
-            positive_questions();
-
-        } else {
+         else {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
             elimination_list.add(present_symptom);
@@ -234,19 +230,19 @@ public class questions extends Fragment {
 
     void cleanUp()
     {
-        Map<String,String>temp = sortByValueAsc(disease_list);
-
-        int count = 0;
-
-        for (String s:temp.keySet())
-        {
-            count++;
-
-            if (count > 1)
-            {
-                disease_list.remove(s);
-            }
-        }
+//        Map<String,String>temp = sortByValueAsc(disease_list);
+//
+//        int count = 0;
+//
+//        for (String s:temp.keySet())
+//        {
+//            count++;
+//
+//            if (count > 1)
+//            {
+//                disease_list.remove(s);
+//            }
+//        }
 
         final FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference myRef=database.getReference();
@@ -312,24 +308,20 @@ public class questions extends Fragment {
             @Override
             public void onClick(View v)
             {
-                if(priority_stack.isEmpty())
+                if (priority_stack.isEmpty())
                 {
-                    cleanUp();
-                }
-
-                if(disease_list.size()==1)
-                {
-                    for (String s : disease_list.keySet())
+                    if(positive)
                     {
-
-                        listItems.clear();
-                        ListItem listItem=new ListItem("It appears that you have "+s,"Yes");
-                        listItems.add(listItem);
-
-                        adapter = new MyAdapter(listItems, v.getContext());
-                        recyclerView.setAdapter(adapter);
-
-                        myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
+                        cleanUp();
+                        getFragmentManager().beginTransaction()
+                                .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                                .addToBackStack(null)
+                                .commit();
+                    }
+                    else
+                    {
+                        positive = true;
+                        positive_questions();
                     }
                 }
                 else
