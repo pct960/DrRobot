@@ -46,7 +46,7 @@ public class result extends Fragment
 
         FirebaseAuth mAuth=FirebaseAuth.getInstance();
         FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference myRef=database.getReference("Diagnose/"+mAuth.getCurrentUser().getUid());
+        DatabaseReference myRef=database.getReference("Diagnosis/"+mAuth.getCurrentUser().getUid());
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -74,7 +74,6 @@ public class result extends Fragment
 
         for(Map.Entry<String,Double> entry : navigableMap.entrySet())
         {
-            listItems.clear();
             Result_ListItem listItem=new Result_ListItem(entry.getKey(),"Probability : "+Double.parseDouble(entry.getValue().toString()));
             listItems.add(listItem);
         }

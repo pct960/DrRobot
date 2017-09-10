@@ -196,8 +196,6 @@ public class questions extends Fragment {
         }
 
     }
-
-
     void initiate_strike(String symptom) {
         for (String s : disease_list.keySet()) {
             if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {
