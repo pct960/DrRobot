@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -37,6 +38,7 @@ public class diagnose extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_diagnose, container, false);
+
         count=1;
         margin=25;
         chosensymptoms.clear();
@@ -121,10 +123,13 @@ Log.d("yaya", Integer.toString(chosensymptoms.size()));
 
 
                     }
+                    InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                     getFragmentManager().beginTransaction()
                             .replace(((ViewGroup) getView().getParent()).getId(), new questions())
-                            .addToBackStack(null)
+                            .disallowAddToBackStack()
                             .commit();
                 }
             });
