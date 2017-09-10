@@ -35,7 +35,7 @@ public class result extends Fragment
     private RecyclerView.Adapter adapter;
     private List<Result_ListItem> listItems;
     View v;
-    TreeMap<String,Double> map=new TreeMap<>(Collections.<String>reverseOrder());
+    TreeMap<Double,String> map=new TreeMap<Double, String>(Collections.<Double>reverseOrder());
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_result, container, false);
@@ -56,7 +56,7 @@ public class result extends Fragment
             {
                 for(DataSnapshot node : dataSnapshot.getChildren())
                 {
-                    map.put(node.getKey(),Double.parseDouble(node.getValue().toString()));
+                    map.put(Double.parseDouble(node.getValue().toString()),node.getKey());
                 }
                 go();
             }
@@ -89,19 +89,19 @@ public class result extends Fragment
         DatabaseReference myRef=database.getReference();
         FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-        NavigableMap<String,Double> navigableMap=map.descendingMap();
+        //NavigableMap<String,Double> navigableMap=map.descendingMap();
 
-        for(Map.Entry<String,Double> entry : navigableMap.entrySet())
+        for(Map.Entry<Double,String> entry : map.entrySet())
         {
-            double prob=Double.parseDouble(entry.getValue().toString())*100;
+            double prob=Double.parseDouble(entry.getKey().toString())*100;
             int probability=(int)Math.round(prob);
-            Result_ListItem listItem=new Result_ListItem(entry.getKey().trim(),"Probability : "+probability+"%");
+            Result_ListItem listItem=new Result_ListItem(entry.getValue().trim(),"Probability : "+probability+"%");
             listItems.add(listItem);
         }
 
         adapter = new Result_MyAdapter(listItems, v.getContext());
         recyclerView.setAdapter(adapter);
 
-        //myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
+        myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
     }
 }

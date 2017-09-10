@@ -178,6 +178,7 @@ public class questions extends Fragment {
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
@@ -190,6 +191,7 @@ public class questions extends Fragment {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
             elimination_list.add(present_symptom);
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
@@ -226,9 +228,8 @@ public class questions extends Fragment {
                     disease_list.remove(s);
                     hit_ratio.remove(s);
                     hits.remove(s);
-
-                    Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -320,6 +321,10 @@ public class questions extends Fragment {
             {
                 if (priority_stack.isEmpty())
                 {
+                    getResponse();
+                    if (response == 0) initiate_strike(present_symptom);
+                    else if(response==1)initiate_hit(present_symptom);
+
                     if(positive)
                     {
                         cleanUp();
