@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,7 +35,7 @@ public class result extends Fragment
     private RecyclerView.Adapter adapter;
     private List<Result_ListItem> listItems;
     View v;
-    TreeMap<String,Double> map=new TreeMap<String,Double>();
+    TreeMap<Double,String> map=new TreeMap<Double, String>(Collections.<Double>reverseOrder());
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_result, container, false);
@@ -54,7 +56,7 @@ public class result extends Fragment
             {
                 for(DataSnapshot node : dataSnapshot.getChildren())
                 {
-                    map.put(node.getKey(),Double.parseDouble(node.getValue().toString()));
+                    map.put(Double.parseDouble(node.getValue().toString()),node.getKey());
                 }
                 go();
             }
@@ -65,20 +67,41 @@ public class result extends Fragment
             }
         });
 
+        Button btn=(Button)v.findViewById(R.id.btn_result_ok);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new diagnose())
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         return v;
     }
 
     void go()
     {
-        NavigableMap<String,Double> navigableMap=map.descendingMap();
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference();
+        FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-        for(Map.Entry<String,Double> entry : navigableMap.entrySet())
+        //NavigableMap<String,Double> navigableMap=map.descendingMap();
+
+        for(Map.Entry<Double,String> entry : map.entrySet())
         {
-            Result_ListItem listItem=new Result_ListItem(entry.getKey(),"Probability : "+Double.parseDouble(entry.getValue().toString()));
+            double prob=Double.parseDouble(entry.getKey().toString())*100;
+            int probability=(int)Math.round(prob);
+            Result_ListItem listItem=new Result_ListItem(entry.getValue().trim(),"Probability : "+probability+"%");
             listItems.add(listItem);
         }
 
         adapter = new Result_MyAdapter(listItems, v.getContext());
         recyclerView.setAdapter(adapter);
+
+        myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).removeValue();
     }
 }

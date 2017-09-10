@@ -130,6 +130,24 @@ public class questions extends Fragment {
             }
         }
 
+        for (String s : disease_list.keySet()) {
+            for (int j = 1; j < 47; j++) {
+                if ((database[Integer.parseInt(disease_row.get(s))][j].equals("1")) && (symptoms.contains(database[0][j]))) {
+                    int hit_count = 0;
+
+                    if (hits.get(s) != null) hit_count = hits.get(s);
+
+                    hit_count++;
+
+                    hits.put(s, hit_count);
+
+                    double ratio = (hit_count) / Double.parseDouble(total_symptoms.get(s).toString());
+
+                    hit_ratio.put(s, ratio);
+                }
+            }
+        }
+
         fire_question();
     }
 
@@ -160,9 +178,10 @@ public class questions extends Fragment {
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
-            ListItem listItem=new ListItem(present_question,"Yes");
+            ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
 
             adapter = new MyAdapter(listItems, v.getContext());
@@ -172,9 +191,10 @@ public class questions extends Fragment {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
             elimination_list.add(present_symptom);
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
-            ListItem listItem=new ListItem(present_question,"Yes");
+            ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
 
             adapter = new MyAdapter(listItems, v.getContext());
@@ -203,9 +223,16 @@ public class questions extends Fragment {
 
                 strike_count++;
 
-                if (strike_count == 3) {
+                if (strike_count == 3)
+                {
                     disease_list.remove(s);
-                } else {
+                    hit_ratio.remove(s);
+                    hits.remove(s);
+//                    Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
                     disease_list.put(s, String.valueOf(strike_count));
                 }
 
@@ -228,20 +255,6 @@ public class questions extends Fragment {
 
     void cleanUp()
     {
-//        Map<String,String>temp = sortByValueAsc(disease_list);
-//
-//        int count = 0;
-//
-//        for (String s:temp.keySet())
-//        {
-//            count++;
-//
-//            if (count > 1)
-//            {
-//                disease_list.remove(s);
-//            }
-//        }
-
         final FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference myRef=database.getReference();
         final FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -308,9 +321,14 @@ public class questions extends Fragment {
             {
                 if (priority_stack.isEmpty())
                 {
+                    getResponse();
+                    if (response == 0) initiate_strike(present_symptom);
+                    else if(response==1)initiate_hit(present_symptom);
+
                     if(positive)
                     {
                         cleanUp();
+                        myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                         getFragmentManager().beginTransaction()
                                 .replace(((ViewGroup) getView().getParent()).getId(), new result())
                                 .addToBackStack(null)
