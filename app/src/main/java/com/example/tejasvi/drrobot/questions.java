@@ -83,6 +83,20 @@ public class questions extends Fragment {
     int lastyes=0;
     int lastno=0;
 
+    public questions()
+    {
+        symptom_question.clear();
+        disease_list.clear();
+        symptoms.clear();
+        common_symptoms.clear();
+        positive=false;
+        elimination_list.clear();
+        priority_stack.clear();
+        hits.clear();
+        total_symptoms.clear();
+        hit_ratio.clear();
+    }
+
     void logic() {
         Log.d("baba",symptoms.toString());
         int count = 0, threshold = symptoms.size() - 2;
@@ -186,9 +200,12 @@ public class questions extends Fragment {
             final FirebaseDatabase database=FirebaseDatabase.getInstance();
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
-            for(Map.Entry<String,String>map : disease_list.entrySet())
 
+            myRef.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
+
+            for(Map.Entry<String,String>map : disease_list.entrySet())
             myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child(map.getKey()).setValue("1");
+
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
                     .disallowAddToBackStack()
