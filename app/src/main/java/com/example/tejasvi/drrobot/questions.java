@@ -80,8 +80,11 @@ public class questions extends Fragment {
     String csv;
     String present_symptom;
     String present_question;
+    int lastyes=0;
+    int lastno=0;
 
     void logic() {
+        Log.d("baba",symptoms.toString());
         int count = 0, threshold = symptoms.size() - 2;
 
         for (int i = 1; i < 16; i++) {
@@ -174,7 +177,25 @@ public class questions extends Fragment {
 
     void fire_question()
     {
-        if(positive&&(!priority_stack.isEmpty()))
+        Log.d("baba",priority_stack.toString()+" "+priority_stack.size());
+        Log.d("baba",disease_list.toString());
+        Log.d("baba","------------------------------------------------------------------------------");
+        if(priority_stack.isEmpty())   //for just 1 disease
+        {
+            Log.d("baba","BARRAMUNDI");
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+            for(Map.Entry<String,String>map : disease_list.entrySet())
+
+            myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child(map.getKey()).setValue("1");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .disallowAddToBackStack()
+                    .commit();
+        }
+
+        else if(positive&&(!priority_stack.isEmpty()))
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
@@ -209,13 +230,44 @@ public class questions extends Fragment {
         if(ListItem.getResponse().equals("Yes"))
         {
             response=1;
+            lastyes=0;
+            lastno++;
         }
         else
         {
             response=0;
+            lastno=0;
+            lastyes++;
         }
+        if(lastno>15) {//i.e. continuous yes's
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-    }
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Everything?? - Go see a doctor fast!").setValue("1");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .disallowAddToBackStack()
+                    .commit();
+
+
+        }
+        else if(lastyes>15){
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
+
+                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing? - Have you missed out a symptom ?").setValue("100");
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new result())
+                    .disallowAddToBackStack()
+                    .commit();
+            }
+        }
+            //dsd
+
+
     void initiate_strike(String symptom) {
         for (String s : disease_list.keySet()) {
             if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {
@@ -331,7 +383,7 @@ public class questions extends Fragment {
                         myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                         getFragmentManager().beginTransaction()
                                 .replace(((ViewGroup) getView().getParent()).getId(), new result())
-                                .addToBackStack(null)
+                                .disallowAddToBackStack()
                                 .commit();
                     }
                     else

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class result extends Fragment
     TreeMap<Double,String> map=new TreeMap<Double, String>(Collections.<Double>reverseOrder());
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         v = inflater.inflate(R.layout.activity_result, container, false);
 
         recyclerView = (RecyclerView) v.findViewById(R.id.result_recyclerview);
@@ -75,10 +78,33 @@ public class result extends Fragment
 
                 getFragmentManager().beginTransaction()
                         .replace(((ViewGroup) getView().getParent()).getId(), new diagnose())
-                        .addToBackStack(null)
+                        .disallowAddToBackStack()
                         .commit();
             }
         });
+
+        //HANDLES KEYBACK
+        v.setFocusableInTouchMode(true);
+        v.requestFocus();
+        v.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (keyCode == KeyEvent.KEYCODE_BACK){
+
+                    getFragmentManager().beginTransaction()
+                            .replace(((ViewGroup) getView().getParent()).getId(), new diagnose())
+                            .disallowAddToBackStack()
+                            .commit();
+
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
+
 
         return v;
     }
