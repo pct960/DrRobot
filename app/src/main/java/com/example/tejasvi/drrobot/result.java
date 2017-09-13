@@ -1,5 +1,6 @@
 package com.example.tejasvi.drrobot;
 
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,11 +38,16 @@ public class result extends Fragment
     private List<Result_ListItem> listItems;
     View v;
     TreeMap<Double,String> map=new TreeMap<Double, String>(Collections.<Double>reverseOrder());
+    ProgressDialog progressDialog;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
         v = inflater.inflate(R.layout.activity_result, container, false);
+
+        progressDialog=new ProgressDialog(v.getContext());
+        progressDialog.setMessage("Getting Result...");
+        progressDialog.show();
 
         recyclerView = (RecyclerView) v.findViewById(R.id.result_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -125,6 +131,7 @@ public class result extends Fragment
             listItems.add(listItem);
         }
 
+        progressDialog.dismiss();
         adapter = new Result_MyAdapter(listItems, v.getContext());
         recyclerView.setAdapter(adapter);
 

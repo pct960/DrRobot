@@ -1,5 +1,6 @@
 package com.example.tejasvi.drrobot;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.IBinder;
 import android.provider.ContactsContract;
@@ -73,6 +74,7 @@ public class questions extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
+    ProgressDialog progressDialog;
     View v;
     int question_count = 2;
     int response;
@@ -173,6 +175,7 @@ public class questions extends Fragment {
         for (String s : disease_list.keySet()) {
             if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {
 
+
                 int hit_count=0;
 
                 if(hits.get(s)!=null) hit_count=hits.get(s);
@@ -194,7 +197,23 @@ public class questions extends Fragment {
         Log.d("baba",priority_stack.toString()+" "+priority_stack.size());
         Log.d("baba",disease_list.toString());
         Log.d("baba","------------------------------------------------------------------------------");
-        if(priority_stack.isEmpty())   //for just 1 disease
+
+        if(disease_list.isEmpty())
+        {
+            Toast.makeText(v.getContext(), "It looks like you have a very unnatural set of symptoms. Kindly visit a doctor", Toast.LENGTH_LONG).show();
+
+            final FirebaseDatabase database=FirebaseDatabase.getInstance();
+            final DatabaseReference myRef=database.getReference();
+            final FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
+            myRef.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
+
+            getFragmentManager().beginTransaction()
+                    .replace(((ViewGroup) getView().getParent()).getId(), new diagnose())
+                    .disallowAddToBackStack()
+                    .commit();
+        }
+        else if(priority_stack.isEmpty())   //for just 1 disease
         {
             Log.d("baba","BARRAMUNDI");
             final FirebaseDatabase database=FirebaseDatabase.getInstance();
@@ -216,11 +235,13 @@ public class questions extends Fragment {
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
-            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
+
+            progressDialog.dismiss();
 
             adapter = new MyAdapter(listItems, v.getContext());
             recyclerView.setAdapter(adapter);
@@ -229,12 +250,13 @@ public class questions extends Fragment {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
             elimination_list.add(present_symptom);
-            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
             listItems.add(listItem);
 
+            progressDialog.dismiss();
             adapter = new MyAdapter(listItems, v.getContext());
             recyclerView.setAdapter(adapter);
 
@@ -261,7 +283,9 @@ public class questions extends Fragment {
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
-                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Everything?? - Go see a doctor fast!").setValue("1");
+            myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Everything?? - Go see a doctor fast!").setValue("1");
+            myRef.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
+
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
                     .disallowAddToBackStack()
@@ -275,7 +299,8 @@ public class questions extends Fragment {
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
 
 
-                myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing? - Have you missed out a symptom ?").setValue("100");
+            myRef.child("Diagnosis").child(mAuth.getCurrentUser().getUid()).child("Nothing? - Have you missed out a symptom ?").setValue("100");
+            myRef.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
             getFragmentManager().beginTransaction()
                     .replace(((ViewGroup) getView().getParent()).getId(), new result())
                     .disallowAddToBackStack()
@@ -290,15 +315,25 @@ public class questions extends Fragment {
             if (database[Integer.parseInt(disease_row.get(s))][Integer.parseInt(symptom_column.get(symptom))].equals("1")) {
                 int strike_count = Integer.parseInt(disease_list.get(s));
 
-                strike_count++;
+                int strike_estimate=(int)Math.ceil(0.4*total_symptoms.get(database[Integer.parseInt(disease_row.get(s))][0]));
+                int max_strike=(3>strike_estimate)?3:strike_estimate;
 
-                if (strike_count == 3)
+                if(symptom.equals("Confusion")||symptom.equals("Paralysis"))
+                {
+                    strike_count+=2;
+                }
+                else
+                {
+                    strike_count++;
+                }
+
+                if (strike_count == max_strike)
                 {
                     disease_list.remove(s);
                     hit_ratio.remove(s);
                     hits.remove(s);
-//                    Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(), s+" has been eliminated", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(v.getContext(), disease_list.toString(), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -355,6 +390,9 @@ public class questions extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.activity_questions, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        progressDialog=new ProgressDialog(v.getContext());
+        progressDialog.setMessage("Loading Questions...");
+        progressDialog.show();
         recyclerView = (RecyclerView) v.findViewById(R.id.questions_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(50);
@@ -396,6 +434,7 @@ public class questions extends Fragment {
 
                     if(positive)
                     {
+                        progressDialog.setMessage("Getting Result...");
                         cleanUp();
                         myRef1.child("Session").child(mAuth.getCurrentUser().getUid()).removeValue();
                         getFragmentManager().beginTransaction()
@@ -411,6 +450,7 @@ public class questions extends Fragment {
                 }
                 else
                 {
+                    progressDialog.setMessage("Loading Questions...");
                     getResponse();
                     if (response == 0) initiate_strike(present_symptom);
                     else if(response==1)initiate_hit(present_symptom);

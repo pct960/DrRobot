@@ -1,5 +1,6 @@
 package com.example.tejasvi.drrobot;
 
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class diagnose extends Fragment {
     AutoCompleteTextView initsymptom;
     ArrayList<AutoCompleteTextView> chosensymptoms=new ArrayList<>();
     String symptom_list[];
+    ProgressDialog progressDialog;
 
     int count;
     int margin;
@@ -63,7 +65,7 @@ public class diagnose extends Fragment {
         count++;
 
 Log.d("yaya", Integer.toString(chosensymptoms.size()));
-        if(count>=5)
+        if(count>=6)
         {
             Toast.makeText(v.getContext(), "You can only add a maximum of five symptoms at a time ", Toast.LENGTH_SHORT).show();
         }
@@ -116,6 +118,10 @@ Log.d("yaya", Integer.toString(chosensymptoms.size()));
                 @Override
                 public void onClick(View v) {
 
+                    progressDialog=new ProgressDialog(v.getContext());
+                    progressDialog.setMessage("Loading Questions...");
+                    progressDialog.show();
+
                     for(int i=0;i<chosensymptoms.size();i++)
                     {
                         String selection=chosensymptoms.get(i).getText().toString();
@@ -127,6 +133,7 @@ Log.d("yaya", Integer.toString(chosensymptoms.size()));
 
                     inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
+                    progressDialog.dismiss();
                     getFragmentManager().beginTransaction()
                             .replace(((ViewGroup) getView().getParent()).getId(), new questions())
                             .disallowAddToBackStack()

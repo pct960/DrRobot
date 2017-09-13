@@ -33,17 +33,16 @@ public class settings extends Fragment {
         final ArrayAdapter<String> aa;
         aa = new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_list_item_1,settings_Items);
         myListView.setAdapter(aa);
-        settings_Items.add(0,"Edit Profile");
-        settings_Items.add(1,"Change Password");
-        settings_Items.add(2,"Change Email");
-        settings_Items.add(3,"Logout");
+        settings_Items.add(0,"Change Password");
+        settings_Items.add(1,"Change Email");
+        settings_Items.add(2,"Logout");
         aa.notifyDataSetChanged();
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(position==3)
+                if(position==2)
                 {
                     new AlertDialog.Builder(view.getContext())
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -64,17 +63,12 @@ public class settings extends Fragment {
                             .setNegativeButton("No", null)
                             .show();
                 }
-                else if(position==0)
-                {
-                    Intent i=new Intent(v.getContext(),editprofile.class);
-                    v.getContext().startActivity(i);
-                }
-                else if(position==2)
+                else if(position==1)
                 {
                     Intent i=new Intent(v.getContext(),update_email.class);
                     v.getContext().startActivity(i);
                 }
-                else if(position==1)
+                else if(position==0)
                 {
                     Intent i=new Intent(v.getContext(),update_password.class);
                     v.getContext().startActivity(i);

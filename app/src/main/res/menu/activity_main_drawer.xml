@@ -7,10 +7,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Perform a quick diagnosis" />
         <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="View History" />
-        <item
             android:id="@+id/nav_learn"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Learn More " />
