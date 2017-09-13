@@ -97,6 +97,8 @@ public class questions extends Fragment {
         hits.clear();
         total_symptoms.clear();
         hit_ratio.clear();
+        lastno=0;
+        lastyes=0;
     }
 
     void logic() {
@@ -235,7 +237,7 @@ public class questions extends Fragment {
         {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
-            //Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
@@ -250,7 +252,7 @@ public class questions extends Fragment {
             present_symptom = priority_stack.pop();
             present_question = symptom_question.get(present_symptom);
             elimination_list.add(present_symptom);
-            //Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Symptom is "+present_symptom, Toast.LENGTH_SHORT).show();
 
             listItems.clear();
             ListItem listItem=new ListItem(present_question.trim(),"Yes");
@@ -278,7 +280,7 @@ public class questions extends Fragment {
             lastno=0;
             lastyes++;
         }
-        if(lastno>15) {//i.e. continuous yes's
+        if(lastno>15&&priority_stack.isEmpty()) {//i.e. continuous yes's
             final FirebaseDatabase database=FirebaseDatabase.getInstance();
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -293,7 +295,7 @@ public class questions extends Fragment {
 
 
         }
-        else if(lastyes>15){
+        else if(lastyes>15&&priority_stack.isEmpty()){
             final FirebaseDatabase database=FirebaseDatabase.getInstance();
             final DatabaseReference myRef=database.getReference();
             final FirebaseAuth mAuth=FirebaseAuth.getInstance();
@@ -307,7 +309,6 @@ public class questions extends Fragment {
                     .commit();
             }
         }
-            //dsd
 
 
     void initiate_strike(String symptom) {
